@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Nouveau Plan de Leçon - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <h2 class="fw-bold mb-4"><i class="bi bi-journal-plus me-2 text-success"></i>Nouveau Plan de Leçon</h2>
+    <div class="card">
+      <div class="card-body p-4">
+        <form method="post">
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label fw-semibold">Titre du plan <span class="text-danger">*</span></label>
+              <input type="text" name="titre" class="form-control" placeholder="Ex: Introduction à Al-Fatiha" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Niveau scolaire <span class="text-danger">*</span></label>
+              <select name="niveau" class="form-select" required>
+                <option value="">-- Choisir un niveau --</option>
+                {% for n in niveaux %}
+                <option value="{{ n.pk }}">{{ n.nom }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Sourate <span class="text-danger">*</span></label>
+              <select name="surah" class="form-select" required>
+                <option value="">-- Choisir une sourate --</option>
+                {% for s in sourates %}
+                <option value="{{ s.pk }}">{{ s.numero }}. {{ s.nom_translittere }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Durée (minutes)</label>
+              <input type="number" name="duree_minutes" class="form-control" value="60" min="15" max="180">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Objectifs pédagogiques <span class="text-danger">*</span></label>
+              <textarea name="objectifs" class="form-control" rows="3" placeholder="À la fin de la séance, l'élève sera capable de..." required></textarea>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Prérequis</label>
+              <textarea name="prerequis" class="form-control" rows="2" placeholder="Ce que les élèves doivent déjà savoir..."></textarea>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Déroulement de la séance <span class="text-danger">*</span></label>
+              <textarea name="deroulement" class="form-control" rows="6" placeholder="1. Introduction (10 min)&#10;2. Récitation collective (20 min)&#10;3. Exercice individuel (20 min)..." required></textarea>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Activités des élèves</label>
+              <textarea name="activites_eleves" class="form-control" rows="3" placeholder="Description des activités pratiques..."></textarea>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Évaluation</label>
+              <textarea name="evaluation" class="form-control" rows="2" placeholder="Comment évaluer la compréhension des élèves..."></textarea>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Matériel requis</label>
+              <input type="text" name="materiel_requis" class="form-control" placeholder="Tableau, marqueurs, fiches, audio...">
+            </div>
+          </div>
+          <div class="d-flex gap-3 justify-content-end mt-4">
+            <a href="{% url 'liste_plans_lecon' %}" class="btn btn-outline-secondary">Annuler</a>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="bi bi-save me-2"></i>Enregistrer en brouillon
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

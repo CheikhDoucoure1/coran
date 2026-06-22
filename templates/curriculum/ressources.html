@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Ressources Pédagogiques - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold mb-0"><i class="bi bi-collection me-2 text-success"></i>Ressources Pédagogiques</h2>
+</div>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <form method="get" class="row g-3 align-items-end">
+      <div class="col-md-4">
+        <select name="type" class="form-select">
+          <option value="">Tous les types</option>
+          <option value="audio" {% if type_filtre == 'audio' %}selected{% endif %}>Audio</option>
+          <option value="video" {% if type_filtre == 'video' %}selected{% endif %}>Vidéo</option>
+          <option value="pdf"   {% if type_filtre == 'pdf'   %}selected{% endif %}>PDF</option>
+          <option value="image" {% if type_filtre == 'image' %}selected{% endif %}>Image</option>
+          <option value="lien"  {% if type_filtre == 'lien'  %}selected{% endif %}>Lien externe</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-outline-success w-100">Filtrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row g-3">
+  {% for ressource in ressources %}
+  <div class="col-md-6 col-lg-4">
+    <div class="card surah-card h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <span class="fs-4 text-success">
+            <i class="bi bi-{% if ressource.type_ressource == 'audio' %}volume-up-fill{% elif ressource.type_ressource == 'video' %}play-circle-fill{% elif ressource.type_ressource == 'pdf' %}file-pdf-fill{% elif ressource.type_ressource == 'image' %}image-fill{% else %}link-45deg{% endif %}"></i>
+          </span>
+          <div>
+            <h6 class="fw-bold mb-0">{{ ressource.titre }}</h6>
+            <small class="text-muted">{{ ressource.get_type_ressource_display }}</small>
+          </div>
+        </div>
+        {% if ressource.surah %}
+        <p class="text-muted small mb-1"><i class="bi bi-book me-1"></i>{{ ressource.surah.nom_translittere }}</p>
+        {% endif %}
+        {% if ressource.description %}
+        <p class="text-secondary small mb-3">{{ ressource.description|truncatewords:15 }}</p>
+        {% endif %}
+        {% if ressource.url_externe %}
+        <a href="{{ ressource.url_externe }}" target="_blank" class="btn btn-sm btn-outline-success w-100">
+          <i class="bi bi-box-arrow-up-right me-1"></i>Ouvrir
+        </a>
+        {% elif ressource.fichier %}
+        <a href="{{ ressource.fichier.url }}" class="btn btn-sm btn-outline-success w-100">
+          <i class="bi bi-download me-1"></i>Télécharger
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12 text-center py-5">
+    <i class="bi bi-collection text-muted fs-1"></i>
+    <p class="text-muted mt-3">Aucune ressource disponible.</p>
+    {% if user.is_staff %}
+    <a href="/admin/curriculum/ressource/add/" class="btn btn-outline-success">Ajouter une ressource</a>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

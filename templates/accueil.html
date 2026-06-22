@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block title %}Coran Sénégal - Accueil{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<div class="py-5" style="background: linear-gradient(135deg, #006B30 0%, #009A44 60%, #00b84e 100%); color: white; margin: -24px -24px 0 -24px;">
+  <div class="container text-center py-5">
+    <div class="mb-4">
+      <span class="arabic-text" style="font-size: 2.8rem; color: #FDEF42;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+    </div>
+    <h1 class="display-4 fw-bold mb-3">Coran Sénégal</h1>
+    <p class="lead mb-4" style="max-width: 600px; margin: 0 auto;">
+      Plateforme d'intégration du Saint Coran dans les classes primaires et secondaires au Sénégal.
+      Mémorisation, compréhension et Tajweed pour tous les niveaux.
+    </p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="{% url 'liste_sourates' %}" class="btn btn-warning btn-lg px-4 fw-bold">
+        <i class="bi bi-book-open me-2"></i>Explorer le Coran
+      </a>
+      <a href="{% url 'connexion' %}" class="btn btn-outline-light btn-lg px-4">
+        <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
+      </a>
+      <a href="{% url 'inscription_etablissement' %}" class="btn btn-light btn-lg px-4 fw-bold text-success">
+        <i class="bi bi-building-add me-2"></i>Inscrire mon école
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="container my-5">
+  <div class="row g-4 text-center">
+    <div class="col-6 col-md-3">
+      <div class="card stat-card h-100 p-4">
+        <div class="display-5 fw-bold text-success">114</div>
+        <p class="text-muted mb-0">Sourates</p>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card h-100 p-4">
+        <div class="display-5 fw-bold text-success">6236</div>
+        <p class="text-muted mb-0">Versets</p>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card h-100 p-4">
+        <div class="display-5 fw-bold text-success">13</div>
+        <p class="text-muted mb-0">Niveaux Scolaires</p>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card h-100 p-4">
+        <div class="display-5 fw-bold text-success">3</div>
+        <p class="text-muted mb-0">Langues (AR/FR/WO)</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Fonctionnalités -->
+<div class="container mb-5">
+  <h2 class="text-center fw-bold mb-4">Fonctionnalités</h2>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 text-center p-4 surah-card">
+        <div class="mb-3"><i class="bi bi-book-open-fill text-success" style="font-size: 3rem;"></i></div>
+        <h5 class="fw-bold">Bibliothèque Coranique</h5>
+        <p class="text-muted">Toutes les sourates avec texte arabe, translittération, traduction française et wolof.</p>
+        <a href="{% url 'liste_sourates' %}" class="btn btn-outline-success btn-sm mt-auto">Voir les Sourates</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 text-center p-4 surah-card">
+        <div class="mb-3"><i class="bi bi-mortarboard-fill text-success" style="font-size: 3rem;"></i></div>
+        <h5 class="fw-bold">Curriculum par Niveau</h5>
+        <p class="text-muted">Programme adapté du CI au Terminale, avec plans de leçons validés par des enseignants.</p>
+        <a href="{% url 'liste_niveaux' %}" class="btn btn-outline-success btn-sm mt-auto">Voir le Curriculum</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 text-center p-4 surah-card">
+        <div class="mb-3"><i class="bi bi-graph-up-arrow text-success" style="font-size: 3rem;"></i></div>
+        <h5 class="fw-bold">Suivi de Progression</h5>
+        <p class="text-muted">Tableau de bord élève et enseignant pour suivre la mémorisation et la récitation.</p>
+        <a href="{% url 'connexion' %}" class="btn btn-outline-success btn-sm mt-auto">Commencer</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 text-center p-4 surah-card">
+        <div class="mb-3"><i class="bi bi-patch-question-fill text-success" style="font-size: 3rem;"></i></div>
+        <h5 class="fw-bold">Quiz et Évaluations</h5>
+        <p class="text-muted">Tests de mémorisation, de compréhension et de Tajweed adaptés au niveau de l'élève.</p>
+        <a href="{% url 'liste_quiz' %}" class="btn btn-outline-success btn-sm mt-auto">Voir les Quiz</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 text-center p-4 surah-card">
+        <div class="mb-3"><i class="bi bi-journal-richtext text-success" style="font-size: 3rem;"></i></div>
+        <h5 class="fw-bold">Glossaire Islamique</h5>
+        <p class="text-muted">Vocabulaire coranique en arabe, français et wolof pour faciliter la compréhension.</p>
+        <a href="{% url 'glossaire' %}" class="btn btn-outline-success btn-sm mt-auto">Voir le Glossaire</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 text-center p-4 surah-card">
+        <div class="mb-3"><i class="bi bi-code-square text-success" style="font-size: 3rem;"></i></div>
+        <h5 class="fw-bold">API REST</h5>
+        <p class="text-muted">API complète pour intégration avec des applications mobiles ou d'autres systèmes éducatifs.</p>
+        <a href="/api/docs/" class="btn btn-outline-success btn-sm mt-auto">Documentation API</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Niveaux scolaires -->
+<div style="background: #f0faf5;" class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Couverture Scolaire</h2>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card p-4 text-center">
+          <h6 class="text-success fw-bold mb-3"><i class="bi bi-star me-2"></i>Enseignement Primaire</h6>
+          <div class="d-flex flex-wrap gap-2 justify-content-center">
+            <span class="badge bg-success">CI</span>
+            <span class="badge bg-success">CP</span>
+            <span class="badge bg-success">CE1</span>
+            <span class="badge bg-success">CE2</span>
+            <span class="badge bg-success">CM1</span>
+            <span class="badge bg-success">CM2</span>
+          </div>
+          <p class="text-muted small mt-3">Sourates courtes, initiation à la récitation</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-4 text-center">
+          <h6 class="text-warning fw-bold mb-3"><i class="bi bi-star-half me-2"></i>Enseignement Moyen</h6>
+          <div class="d-flex flex-wrap gap-2 justify-content-center">
+            <span class="badge bg-warning text-dark">6ème</span>
+            <span class="badge bg-warning text-dark">5ème</span>
+            <span class="badge bg-warning text-dark">4ème</span>
+            <span class="badge bg-warning text-dark">3ème</span>
+          </div>
+          <p class="text-muted small mt-3">Approfondissement, Tajweed, Compréhension</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-4 text-center">
+          <h6 class="text-danger fw-bold mb-3"><i class="bi bi-star-fill me-2"></i>Enseignement Secondaire</h6>
+          <div class="d-flex flex-wrap gap-2 justify-content-center">
+            <span class="badge bg-danger">2nde</span>
+            <span class="badge bg-danger">1ère</span>
+            <span class="badge bg-danger">Terminale</span>
+          </div>
+          <p class="text-muted small mt-3">Mémorisation avancée, exégèse, sciences islamiques</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

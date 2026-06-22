@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Créer un Quiz - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+    <h2 class="fw-bold mb-4"><i class="bi bi-plus-circle me-2 text-success"></i>Créer un Quiz</h2>
+    <div class="card">
+      <div class="card-body p-4">
+        <form method="post">
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label fw-semibold">Titre <span class="text-danger">*</span></label>
+              <input type="text" name="titre" class="form-control" placeholder="Ex: Test de mémorisation Al-Fatiha - CE2" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Type d'évaluation <span class="text-danger">*</span></label>
+              <select name="type_quiz" class="form-select" required>
+                {% for val, label in types %}
+                <option value="{{ val }}">{{ label }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Niveau scolaire <span class="text-danger">*</span></label>
+              <select name="niveau" class="form-select" required>
+                <option value="">-- Choisir --</option>
+                {% for n in niveaux %}
+                <option value="{{ n.pk }}">{{ n.nom }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Sourate (optionnel)</label>
+              <select name="surah" class="form-select">
+                <option value="">-- Aucune --</option>
+                {% for s in sourates %}
+                <option value="{{ s.pk }}">{{ s.numero }}. {{ s.nom_translittere }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Durée (minutes)</label>
+              <input type="number" name="duree_minutes" class="form-control" value="30" min="5" max="120">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Description</label>
+              <textarea name="description" class="form-control" rows="2" placeholder="Description du quiz..."></textarea>
+            </div>
+          </div>
+          <div class="d-flex gap-3 justify-content-end mt-4">
+            <a href="{% url 'liste_quiz' %}" class="btn btn-outline-secondary">Annuler</a>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="bi bi-arrow-right me-2"></i>Créer et ajouter les questions
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

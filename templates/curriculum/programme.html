@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% block title %}Programme {{ niveau.nom }} - Coran Sénégal{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'liste_niveaux' %}">Curriculum</a></li>
+    <li class="breadcrumb-item active">{{ niveau.nom }}</li>
+  </ol>
+</nav>
+
+<div class="card mb-4" style="background: linear-gradient(135deg, #006B30, #009A44); color:white;">
+  <div class="card-body py-4">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h2 class="fw-bold mb-1">{{ niveau.nom }}</h2>
+        <p class="opacity-75 mb-1">{{ niveau.get_cycle_display }}</p>
+        {% if niveau.description %}<p class="small opacity-75 mb-0">{{ niveau.description }}</p>{% endif %}
+      </div>
+      <div class="col-md-4 text-md-end">
+        {% if programme %}
+        <div class="text-white-50 small">{{ programme.heures_hebdomadaires }}h / semaine</div>
+        <div class="text-white-50 small">{{ programme.annee_scolaire }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if niveau.competences_cibles %}
+<div class="card mb-4">
+  <div class="card-header"><i class="bi bi-bullseye me-2"></i>Compétences Visées</div>
+  <div class="card-body">{{ niveau.competences_cibles }}</div>
+</div>
+{% endif %}
+
+{% if programme %}
+<!-- Sourates Semestre 1 -->
+{% if sourates_s1 %}
+<h5 class="fw-bold mb-3"><i class="bi bi-1-circle me-2 text-success"></i>Semestre 1</h5>
+<div class="row g-3 mb-4">
+  {% for sn in sourates_s1 %}
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <span class="badge bg-success me-2">{{ sn.surah.numero }}</span>
+            <strong>{{ sn.surah.nom_translittere }}</strong>
+            {% if not sn.obligatoire %}<span class="badge bg-secondary ms-1" style="font-size:0.65rem;">Optionnel</span>{% endif %}
+          </div>
+          <span class="arabic-text-sm text-success">{{ sn.surah.nom_arabe }}</span>
+        </div>
+        <p class="text-muted small mt-1 mb-0">{{ sn.surah.nom_francais }} &mdash; {{ sn.surah.nombre_versets }} versets</p>
+        {% if sn.versets_debut or sn.versets_fin %}
+        <p class="text-muted small mb-0">Versets : {{ sn.versets_debut }}{% if sn.versets_fin %} à {{ sn.versets_fin }}{% endif %}</p>
+        {% endif %}
+        {% if sn.notes_enseignant %}<p class="text-success small mb-0"><i class="bi bi-lightbulb me-1"></i>{{ sn.notes_enseignant }}</p>{% endif %}
+        <a href="{% url 'detail_sourate' sn.surah.numero %}" class="btn btn-sm btn-outline-success mt-2">Voir la sourate</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<!-- Sourates Semestre 2 -->
+{% if sourates_s2 %}
+<h5 class="fw-bold mb-3"><i class="bi bi-2-circle me-2 text-success"></i>Semestre 2</h5>
+<div class="row g-3 mb-4">
+  {% for sn in sourates_s2 %}
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <span class="badge bg-success me-2">{{ sn.surah.numero }}</span>
+            <strong>{{ sn.surah.nom_translittere }}</strong>
+          </div>
+          <span class="arabic-text-sm text-success">{{ sn.surah.nom_arabe }}</span>
+        </div>
+        <p class="text-muted small mt-1 mb-1">{{ sn.surah.nom_francais }} &mdash; {{ sn.surah.nombre_versets }} versets</p>
+        <a href="{% url 'detail_sourate' sn.surah.numero %}" class="btn btn-sm btn-outline-success mt-1">Voir la sourate</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<!-- Sourates toute l'année -->
+{% if sourates_annee %}
+<h5 class="fw-bold mb-3"><i class="bi bi-calendar-check me-2 text-success"></i>Toute l'Année</h5>
+<div class="row g-3 mb-4">
+  {% for sn in sourates_annee %}
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <span class="badge bg-success me-2">{{ sn.surah.numero }}</span>
+            <strong>{{ sn.surah.nom_translittere }}</strong>
+          </div>
+          <span class="arabic-text-sm text-success">{{ sn.surah.nom_arabe }}</span>
+        </div>
+        <p class="text-muted small mt-1 mb-1">{{ sn.surah.nom_francais }} &mdash; {{ sn.surah.nombre_versets }} versets</p>
+        <a href="{% url 'detail_sourate' sn.surah.numero %}" class="btn btn-sm btn-outline-success mt-1">Voir la sourate</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if not sourates_s1 and not sourates_s2 and not sourates_annee %}
+<div class="alert alert-quran">
+  <i class="bi bi-info-circle me-2 text-success"></i>
+  Aucune sourate n'a encore été assignée à ce programme.
+  {% if user.is_staff %}<a href="/admin/curriculum/programmecoransenegal/" class="text-success">Compléter via l'administration.</a>{% endif %}
+</div>
+{% endif %}
+
+{% else %}
+<div class="alert alert-quran">
+  <i class="bi bi-info-circle me-2 text-success"></i>
+  Le programme coranique pour ce niveau n'a pas encore été configuré.
+  {% if user.is_staff %}<a href="/admin/curriculum/programmecoransenegal/add/" class="text-success">Créer le programme.</a>{% endif %}
+</div>
+{% endif %}
+
+<!-- Plans de leçons -->
+{% if plans %}
+<h5 class="fw-bold mb-3 mt-4"><i class="bi bi-journal-richtext me-2 text-success"></i>Plans de Leçons Disponibles</h5>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="table-light">
+      <tr><th>Titre</th><th>Sourate</th><th>Durée</th><th>Auteur</th><th></th></tr>
+    </thead>
+    <tbody>
+      {% for plan in plans %}
+      <tr>
+        <td class="fw-semibold">{{ plan.titre }}</td>
+        <td>{{ plan.surah.nom_translittere }}</td>
+        <td>{{ plan.duree_minutes }} min</td>
+        <td class="text-muted small">{{ plan.auteur.get_full_name|default:plan.auteur.username }}</td>
+        <td><a href="{% url 'detail_plan_lecon' plan.pk %}" class="btn btn-sm btn-outline-success">Voir</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

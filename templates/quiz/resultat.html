@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}Résultat - {{ quiz.titre }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <!-- Score -->
+    <div class="card mb-4 text-center" style="background: linear-gradient(135deg, #006B30, #009A44); color:white;">
+      <div class="card-body py-5">
+        <h2 class="fw-bold">{{ quiz.titre }}</h2>
+        <div class="display-2 fw-bold my-3">
+          {{ tentative.note_obtenue|floatformat:1 }}<span class="fs-4 opacity-75">/{{ quiz.note_maximale }}</span>
+        </div>
+        <div class="fs-4 mb-2">{{ tentative.pourcentage_reussite }}%</div>
+        <div class="progress mx-auto mb-3" style="height:12px; max-width:300px; background:rgba(255,255,255,0.3);">
+          <div class="progress-bar bg-warning" style="width: {{ tentative.pourcentage_reussite }}%"></div>
+        </div>
+        <p class="opacity-75">
+          {% if tentative.pourcentage_reussite >= 80 %}Excellent travail ! مَاشَاءَ اللَّه
+          {% elif tentative.pourcentage_reussite >= 60 %}Bien ! Continuez vos efforts.
+          {% elif tentative.pourcentage_reussite >= 50 %}Passable. À revoir.
+          {% else %}À reprendre. N'abandonnez pas !
+          {% endif %}
+        </p>
+        {% if tentative.feedback %}<p class="small opacity-75">{{ tentative.feedback }}</p>{% endif %}
+      </div>
+    </div>
+
+    <!-- Détail des réponses -->
+    <div class="card">
+      <div class="card-header fw-bold"><i class="bi bi-list-check me-2"></i>Détail des Réponses</div>
+      <div class="card-body p-0">
+        {% for rep in reponses %}
+        <div class="p-4 border-bottom">
+          <div class="d-flex gap-2 mb-2">
+            <span class="badge bg-secondary rounded-circle">{{ forloop.counter }}</span>
+            <p class="fw-semibold mb-0">{{ rep.question.enonce }}</p>
+          </div>
+
+          {% if rep.reponse_choisie %}
+          <div class="ms-4">
+            <span class="badge {% if rep.est_correcte %}bg-success{% else %}bg-danger{% endif %} mb-2">
+              <i class="bi bi-{% if rep.est_correcte %}check{% else %}x{% endif %}-circle me-1"></i>
+              Votre réponse : {{ rep.reponse_choisie.texte }}
+            </span>
+            {% if not rep.est_correcte %}
+            {% with bonne=rep.question.get_bonne_reponse %}
+            {% if bonne %}
+            <div class="badge bg-success d-block mb-2">
+              <i class="bi bi-check-circle me-1"></i>Bonne réponse : {{ bonne.texte }}
+            </div>
+            {% endif %}
+            {% endwith %}
+            {% endif %}
+          </div>
+          {% elif rep.reponse_texte %}
+          <div class="ms-4">
+            <p class="text-muted small">Votre réponse : <em>{{ rep.reponse_texte }}</em></p>
+          </div>
+          {% endif %}
+
+          {% if rep.question.explication %}
+          <div class="ms-4 mt-1 p-2 rounded" style="background:#f0faf5; border-left:3px solid #009A44;">
+            <small class="text-success"><i class="bi bi-lightbulb me-1"></i>{{ rep.question.explication }}</small>
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="d-flex gap-3 justify-content-center mt-4">
+      <a href="{% url 'liste_quiz' %}" class="btn btn-outline-success">
+        <i class="bi bi-arrow-left me-1"></i>Retour aux évaluations
+      </a>
+      {% if user.role == 'eleve' %}
+      <a href="{% url 'ma_progression' %}" class="btn btn-primary">
+        <i class="bi bi-graph-up me-1"></i>Ma Progression
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

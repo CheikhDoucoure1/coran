@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Connexion - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+  <div class="col-md-5 col-lg-4">
+    <div class="card shadow-lg">
+      <div class="card-body p-5">
+        <div class="text-center mb-4">
+          <div class="arabic-text-sm text-success mb-2">بِسْمِ اللَّهِ</div>
+          <h3 class="fw-bold">Connexion</h3>
+          <p class="text-muted">Accédez à votre espace scolaire</p>
+        </div>
+
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Identifiant</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-person text-success"></i></span>
+              <input type="text" name="username" class="form-control" placeholder="Votre identifiant" required autofocus>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Mot de passe</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-lock text-success"></i></span>
+              <input type="password" name="password" class="form-control" placeholder="Votre mot de passe" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">
+            <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
+          </button>
+        </form>
+
+        <hr class="my-4">
+        <div class="text-center">
+          <p class="text-muted small mb-2">Votre établissement n'est pas encore inscrit ?</p>
+          <a href="{% url 'inscription_etablissement' %}" class="btn btn-outline-success w-100">
+            <i class="bi bi-building-add me-2"></i>Inscrire mon établissement
+          </a>
+        </div>
+        <div class="alert alert-quran p-3 mt-3">
+          <small class="text-muted">
+            <i class="bi bi-info-circle me-1 text-success"></i>
+            Enseignants et élèves : contactez votre directeur pour obtenir vos identifiants.
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

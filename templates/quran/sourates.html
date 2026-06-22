@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Sourates du Coran - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold mb-0"><i class="bi bi-book me-2 text-success"></i>Sourates du Coran</h2>
+</div>
+
+<!-- Recherche & Filtres -->
+<div class="card mb-4">
+  <div class="card-body">
+    <form method="get" class="row g-3">
+      <div class="col-md-6">
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-search text-success"></i></span>
+          <input type="text" name="q" class="form-control" placeholder="Rechercher une sourate..." value="{{ query }}">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <select name="niveau" class="form-select">
+          <option value="">Tous les niveaux de difficulté</option>
+          <option value="1" {% if niveau_filtre == "1" %}selected{% endif %}>Niveau 1 (CI/CP — Débutant)</option>
+          <option value="2" {% if niveau_filtre == "2" %}selected{% endif %}>Niveau 2 (CE1/CE2)</option>
+          <option value="3" {% if niveau_filtre == "3" %}selected{% endif %}>Niveau 3 (CM/Collège)</option>
+          <option value="4" {% if niveau_filtre == "4" %}selected{% endif %}>Niveau 4 (Lycée)</option>
+          <option value="5" {% if niveau_filtre == "5" %}selected{% endif %}>Niveau 5 (Terminale — Avancé)</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Liste Sourates -->
+<div class="row g-3">
+  {% for surah in sourates %}
+  <div class="col-sm-6 col-lg-4 col-xl-3">
+    <a href="{% url 'detail_sourate' surah.numero %}" class="text-decoration-none">
+      <div class="card surah-card h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <span class="badge bg-success rounded-circle px-2 py-1">{{ surah.numero }}</span>
+            <span class="badge {% if surah.type_revelation == 'mecquoise' %}bg-warning text-dark{% else %}bg-info{% endif %} badge-niveau">
+              {{ surah.get_type_revelation_display }}
+            </span>
+          </div>
+          <div class="text-end mb-2">
+            <span class="arabic-text-sm">{{ surah.nom_arabe }}</span>
+          </div>
+          <h6 class="fw-bold mb-0">{{ surah.nom_translittere }}</h6>
+          <small class="text-muted">{{ surah.nom_francais }}</small>
+          <div class="d-flex justify-content-between mt-2">
+            <small class="text-muted"><i class="bi bi-list-ol me-1"></i>{{ surah.nombre_versets }} versets</small>
+            <div>
+              {% with nd=surah.niveau_difficulte %}
+              <i class="bi bi-star{% if nd >= 1 %}-fill text-warning{% else %} text-muted{% endif %}" style="font-size: 0.7rem;"></i>
+              <i class="bi bi-star{% if nd >= 2 %}-fill text-warning{% else %} text-muted{% endif %}" style="font-size: 0.7rem;"></i>
+              <i class="bi bi-star{% if nd >= 3 %}-fill text-warning{% else %} text-muted{% endif %}" style="font-size: 0.7rem;"></i>
+              <i class="bi bi-star{% if nd >= 4 %}-fill text-warning{% else %} text-muted{% endif %}" style="font-size: 0.7rem;"></i>
+              <i class="bi bi-star{% if nd >= 5 %}-fill text-warning{% else %} text-muted{% endif %}" style="font-size: 0.7rem;"></i>
+              {% endwith %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% empty %}
+  <div class="col-12 text-center py-5">
+    <i class="bi bi-search text-muted fs-1"></i>
+    <p class="text-muted mt-3">Aucune sourate trouvée pour "{{ query }}".</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

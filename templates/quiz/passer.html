@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}{{ quiz.titre }} - Évaluation{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card mb-4">
+      <div class="card-body" style="background: linear-gradient(135deg, #006B30, #009A44); color: white; border-radius: 12px;">
+        <h3 class="fw-bold">{{ quiz.titre }}</h3>
+        <div class="d-flex gap-3 flex-wrap">
+          <span><i class="bi bi-clock me-1"></i>{{ quiz.duree_minutes }} min</span>
+          <span><i class="bi bi-list-ol me-1"></i>{{ nb_questions }} questions</span>
+          <span><i class="bi bi-award me-1"></i>{{ quiz.note_maximale }} points</span>
+        </div>
+      </div>
+    </div>
+
+    <form method="post" id="quiz-form">
+      {% csrf_token %}
+      {% for question in questions %}
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="d-flex gap-3 mb-3">
+            <span class="badge bg-success rounded-circle px-2 py-1" style="min-width: 28px;">{{ forloop.counter }}</span>
+            <div>
+              <p class="fw-semibold mb-1">{{ question.enonce }}</p>
+              {% if question.enonce_arabe %}
+              <p class="arabic-text-sm text-success mb-1">{{ question.enonce_arabe }}</p>
+              {% endif %}
+              {% if question.verset_reference %}
+              <small class="text-muted">
+                <i class="bi bi-book me-1"></i>Référence : S.{{ question.verset_reference.surah.numero }}:V.{{ question.verset_reference.numero }}
+              </small>
+              {% endif %}
+            </div>
+          </div>
+
+          {% if question.type_question == 'qcm' or question.type_question == 'vf' %}
+          <div class="ps-4">
+            {% for reponse in question.reponses.all %}
+            <div class="form-check mb-2 p-3 rounded border" style="cursor: pointer;" onclick="this.querySelector('input').click()">
+              <input class="form-check-input" type="radio" name="question_{{ question.pk }}" value="{{ reponse.pk }}" id="rep_{{ reponse.pk }}">
+              <label class="form-check-label w-100" for="rep_{{ reponse.pk }}" style="cursor: pointer;">
+                {{ reponse.texte }}
+                {% if reponse.texte_arabe %}
+                <span class="arabic-text-sm ms-2 text-success">{{ reponse.texte_arabe }}</span>
+                {% endif %}
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+          {% elif question.type_question == 'texte_lacunaire' or question.type_question == 'reponse_libre' %}
+          <div class="ps-4">
+            <textarea name="texte_{{ question.pk }}" class="form-control" rows="3" placeholder="Votre réponse..."></textarea>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="d-flex gap-3 justify-content-end">
+        <a href="{% url 'detail_quiz' quiz.pk %}" class="btn btn-outline-secondary">Annuler</a>
+        <button type="submit" class="btn btn-primary btn-lg px-5" onclick="return confirm('Êtes-vous sûr de vouloir soumettre vos réponses ?')">
+          <i class="bi bi-check2-circle me-2"></i>Soumettre mes réponses
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Highlight selected answer
+document.querySelectorAll('.form-check').forEach(div => {
+  div.querySelector('input')?.addEventListener('change', function() {
+    div.closest('.card-body').querySelectorAll('.form-check').forEach(d => d.classList.remove('border-success', 'bg-success', 'bg-opacity-10'));
+    if (this.checked) div.classList.add('border-success', 'bg-success', 'bg-opacity-10');
+  });
+});
+</script>
+{% endblock %}

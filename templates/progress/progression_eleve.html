@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Progression de {{ eleve.get_full_name }} - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="fw-bold mb-1">{{ eleve.get_full_name|default:eleve.username }}</h2>
+    <p class="text-muted mb-0">Progression coranique</p>
+  </div>
+  <a href="{% url 'enregistrer_session' %}?eleve={{ eleve.pk }}" class="btn btn-primary">
+    <i class="bi bi-mic me-1"></i>Évaluer une Récitation
+  </a>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-7">
+    <div class="card mb-4">
+      <div class="card-header fw-bold"><i class="bi bi-graph-up me-2"></i>Progression par Sourate</div>
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="table-light">
+            <tr><th>Sourate</th><th>Versets</th><th>Progression</th><th>Statut</th><th>Note</th></tr>
+          </thead>
+          <tbody>
+            {% for prog in progressions %}
+            <tr>
+              <td>
+                <div class="fw-semibold">{{ prog.surah.nom_translittere }}</div>
+                <small class="text-muted arabic-text-sm">{{ prog.surah.nom_arabe }}</small>
+              </td>
+              <td class="text-muted small">{{ prog.versets_memorises }}/{{ prog.surah.nombre_versets }}</td>
+              <td style="min-width:100px;">
+                <div class="progress" style="height:6px;">
+                  <div class="progress-bar" style="width:{{ prog.pourcentage }}%"></div>
+                </div>
+                <small class="text-muted">{{ prog.pourcentage }}%</small>
+              </td>
+              <td>
+                <span class="badge {% if prog.statut == 'maitrise' %}bg-success{% elif prog.statut == 'memorise' %}bg-warning text-dark{% elif prog.statut == 'en_cours' %}bg-info{% else %}bg-secondary{% endif %}">
+                  {{ prog.get_statut_display }}
+                </span>
+              </td>
+              <td>{% if prog.note_recitation %}<strong>{{ prog.note_recitation }}/20</strong>{% else %}—{% endif %}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" class="text-center text-muted py-4">Aucune progression enregistrée.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-header fw-bold"><i class="bi bi-mic me-2"></i>Sessions de Récitation Récentes</div>
+      <div class="card-body p-0">
+        {% for session in sessions %}
+        <div class="p-3 border-bottom">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <p class="fw-semibold mb-0">{{ session.surah.nom_translittere }}</p>
+              <small class="text-muted">{{ session.date_session|date:"d/m/Y H:i" }}</small>
+            </div>
+            <div class="text-end">
+              <strong class="{% if session.note >= 14 %}text-success{% elif session.note >= 10 %}text-warning{% else %}text-danger{% endif %}">
+                {{ session.note }}/20
+              </strong><br>
+              <span class="badge bg-light text-secondary" style="font-size:0.65rem;">{{ session.get_evaluation_qualitative_display }}</span>
+            </div>
+          </div>
+          {% if session.observations %}
+          <p class="text-muted small mt-1 mb-0"><i class="bi bi-chat-text me-1"></i>{{ session.observations }}</p>
+          {% endif %}
+        </div>
+        {% empty %}
+        <div class="text-center text-muted py-4">Aucune session enregistrée.</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Classes - Coran Sénégal{% endblock %}
+
+{% block content %}
+<h2 class="fw-bold mb-4"><i class="bi bi-door-open me-2 text-success"></i>Classes</h2>
+
+<div class="row g-3">
+  {% for classe in classes %}
+  <div class="col-md-6 col-lg-4">
+    <div class="card surah-card h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <h5 class="fw-bold mb-0">{{ classe.nom }}</h5>
+          <span class="badge bg-success">{{ classe.get_niveau_display }}</span>
+        </div>
+        <p class="text-muted small mb-1"><i class="bi bi-building me-1"></i>{{ classe.etablissement.nom }}</p>
+        <p class="text-muted small mb-1"><i class="bi bi-people me-1"></i>{{ classe.eleves.count }} élève{{ classe.eleves.count|pluralize }}</p>
+        {% if classe.enseignant_principal %}
+        <p class="text-muted small mb-2"><i class="bi bi-person-video3 me-1"></i>{{ classe.enseignant_principal.get_full_name|default:classe.enseignant_principal.username }}</p>
+        {% endif %}
+        <p class="text-muted small mb-3"><i class="bi bi-calendar me-1"></i>{{ classe.annee_scolaire }}</p>
+        {% if user.role in 'enseignant,admin' %}
+        <a href="{% url 'tableau_classe' classe.pk %}" class="btn btn-sm btn-outline-success w-100">
+          <i class="bi bi-bar-chart me-1"></i>Tableau de Progression
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12 text-center py-5">
+    <i class="bi bi-door-open text-muted fs-1"></i>
+    <p class="text-muted mt-3">Aucune classe disponible.</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

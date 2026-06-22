@@ -1,0 +1,1826 @@
+[
+  {
+    "model": "quran.surah",
+    "pk": 1,
+    "fields": {
+      "numero": 1,
+      "nom_arabe": "الفاتحة",
+      "nom_translittere": "Al-Fatiha",
+      "nom_francais": "L'Ouverture",
+      "nombre_versets": 7,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 5,
+      "description_fr": "Première sourate du Coran, récitée dans chaque prière. Fondamentale pour tous les niveaux.",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 2,
+    "fields": {
+      "numero": 2,
+      "nom_arabe": "البقرة",
+      "nom_translittere": "Al-Baqara",
+      "nom_francais": "La Vache",
+      "nombre_versets": 286,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 87,
+      "description_fr": "La plus longue sourate du Coran. Pour les niveaux lycée et avancés.",
+      "audio_url": "",
+      "niveau_difficulte": 5
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 3,
+    "fields": {
+      "numero": 3,
+      "nom_arabe": "آل عمران",
+      "nom_translittere": "Al-Imran",
+      "nom_francais": "La Famille d'Imran",
+      "nombre_versets": 200,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 89,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 5
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 4,
+    "fields": {
+      "numero": 4,
+      "nom_arabe": "النساء",
+      "nom_translittere": "An-Nisa",
+      "nom_francais": "Les Femmes",
+      "nombre_versets": 176,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 92,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 5
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 5,
+    "fields": {
+      "numero": 5,
+      "nom_arabe": "المائدة",
+      "nom_translittere": "Al-Ma'ida",
+      "nom_francais": "La Table Servie",
+      "nombre_versets": 120,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 112,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 4
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 6,
+    "fields": {
+      "numero": 6,
+      "nom_arabe": "الأنعام",
+      "nom_translittere": "Al-An'am",
+      "nom_francais": "Les Bestiaux",
+      "nombre_versets": 165,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 55,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 4
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 7,
+    "fields": {
+      "numero": 7,
+      "nom_arabe": "الأعراف",
+      "nom_translittere": "Al-A'raf",
+      "nom_francais": "Le Mur d'Enceinte",
+      "nombre_versets": 206,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 39,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 4
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 8,
+    "fields": {
+      "numero": 8,
+      "nom_arabe": "الأنفال",
+      "nom_translittere": "Al-Anfal",
+      "nom_francais": "Le Butin",
+      "nombre_versets": 75,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 88,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 9,
+    "fields": {
+      "numero": 9,
+      "nom_arabe": "التوبة",
+      "nom_translittere": "At-Tawba",
+      "nom_francais": "Le Repentir",
+      "nombre_versets": 129,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 113,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 4
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 10,
+    "fields": {
+      "numero": 10,
+      "nom_arabe": "يونس",
+      "nom_translittere": "Yunus",
+      "nom_francais": "Jonas",
+      "nombre_versets": 109,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 51,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 11,
+    "fields": {
+      "numero": 11,
+      "nom_arabe": "هود",
+      "nom_translittere": "Hud",
+      "nom_francais": "Houd",
+      "nombre_versets": 123,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 52,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 12,
+    "fields": {
+      "numero": 12,
+      "nom_arabe": "يوسف",
+      "nom_translittere": "Yusuf",
+      "nom_francais": "Joseph",
+      "nombre_versets": 111,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 53,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 13,
+    "fields": {
+      "numero": 13,
+      "nom_arabe": "الرعد",
+      "nom_translittere": "Ar-Ra'd",
+      "nom_francais": "Le Tonnerre",
+      "nombre_versets": 43,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 96,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 14,
+    "fields": {
+      "numero": 14,
+      "nom_arabe": "إبراهيم",
+      "nom_translittere": "Ibrahim",
+      "nom_francais": "Abraham",
+      "nombre_versets": 52,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 72,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 15,
+    "fields": {
+      "numero": 15,
+      "nom_arabe": "الحجر",
+      "nom_translittere": "Al-Hijr",
+      "nom_francais": "Al-Hijr",
+      "nombre_versets": 99,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 54,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 16,
+    "fields": {
+      "numero": 16,
+      "nom_arabe": "النحل",
+      "nom_translittere": "An-Nahl",
+      "nom_francais": "Les Abeilles",
+      "nombre_versets": 128,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 70,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 17,
+    "fields": {
+      "numero": 17,
+      "nom_arabe": "الإسراء",
+      "nom_translittere": "Al-Isra",
+      "nom_francais": "Le Voyage Nocturne",
+      "nombre_versets": 111,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 50,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 18,
+    "fields": {
+      "numero": 18,
+      "nom_arabe": "الكهف",
+      "nom_translittere": "Al-Kahf",
+      "nom_francais": "La Caverne",
+      "nombre_versets": 110,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 69,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 19,
+    "fields": {
+      "numero": 19,
+      "nom_arabe": "مريم",
+      "nom_translittere": "Maryam",
+      "nom_francais": "Marie",
+      "nombre_versets": 98,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 44,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 20,
+    "fields": {
+      "numero": 20,
+      "nom_arabe": "طه",
+      "nom_translittere": "Ta-Ha",
+      "nom_francais": "Ta-Ha",
+      "nombre_versets": 135,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 45,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 21,
+    "fields": {
+      "numero": 21,
+      "nom_arabe": "الأنبياء",
+      "nom_translittere": "Al-Anbiya",
+      "nom_francais": "Les Prophètes",
+      "nombre_versets": 112,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 73,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 22,
+    "fields": {
+      "numero": 22,
+      "nom_arabe": "الحج",
+      "nom_translittere": "Al-Hajj",
+      "nom_francais": "Le Pèlerinage",
+      "nombre_versets": 78,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 103,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 23,
+    "fields": {
+      "numero": 23,
+      "nom_arabe": "المؤمنون",
+      "nom_translittere": "Al-Mu'minun",
+      "nom_francais": "Les Croyants",
+      "nombre_versets": 118,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 74,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 24,
+    "fields": {
+      "numero": 24,
+      "nom_arabe": "النور",
+      "nom_translittere": "An-Nur",
+      "nom_francais": "La Lumière",
+      "nombre_versets": 64,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 102,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 25,
+    "fields": {
+      "numero": 25,
+      "nom_arabe": "الفرقان",
+      "nom_translittere": "Al-Furqan",
+      "nom_francais": "Le Discernement",
+      "nombre_versets": 77,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 42,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 26,
+    "fields": {
+      "numero": 26,
+      "nom_arabe": "الشعراء",
+      "nom_translittere": "Ash-Shu'ara",
+      "nom_francais": "Les Poètes",
+      "nombre_versets": 227,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 47,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 4
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 27,
+    "fields": {
+      "numero": 27,
+      "nom_arabe": "النمل",
+      "nom_translittere": "An-Naml",
+      "nom_francais": "Les Fourmis",
+      "nombre_versets": 93,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 48,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 28,
+    "fields": {
+      "numero": 28,
+      "nom_arabe": "القصص",
+      "nom_translittere": "Al-Qasas",
+      "nom_francais": "Le Récit",
+      "nombre_versets": 88,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 49,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 29,
+    "fields": {
+      "numero": 29,
+      "nom_arabe": "العنكبوت",
+      "nom_translittere": "Al-Ankabut",
+      "nom_francais": "L'Araignée",
+      "nombre_versets": 69,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 85,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 30,
+    "fields": {
+      "numero": 30,
+      "nom_arabe": "الروم",
+      "nom_translittere": "Ar-Rum",
+      "nom_francais": "Les Romains",
+      "nombre_versets": 60,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 84,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 31,
+    "fields": {
+      "numero": 31,
+      "nom_arabe": "لقمان",
+      "nom_translittere": "Luqman",
+      "nom_francais": "Luqman",
+      "nombre_versets": 34,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 57,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 32,
+    "fields": {
+      "numero": 32,
+      "nom_arabe": "السجدة",
+      "nom_translittere": "As-Sajda",
+      "nom_francais": "La Prosternation",
+      "nombre_versets": 30,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 75,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 33,
+    "fields": {
+      "numero": 33,
+      "nom_arabe": "الأحزاب",
+      "nom_translittere": "Al-Ahzab",
+      "nom_francais": "Les Coalisés",
+      "nombre_versets": 73,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 90,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 34,
+    "fields": {
+      "numero": 34,
+      "nom_arabe": "سبأ",
+      "nom_translittere": "Saba",
+      "nom_francais": "Saba",
+      "nombre_versets": 54,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 58,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 35,
+    "fields": {
+      "numero": 35,
+      "nom_arabe": "فاطر",
+      "nom_translittere": "Fatir",
+      "nom_francais": "Le Créateur",
+      "nombre_versets": 45,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 43,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 36,
+    "fields": {
+      "numero": 36,
+      "nom_arabe": "يس",
+      "nom_translittere": "Ya-Sin",
+      "nom_francais": "Ya-Sin",
+      "nombre_versets": 83,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 41,
+      "description_fr": "Le cœur du Coran selon le Prophète ﷺ. Pour les niveaux avancés.",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 37,
+    "fields": {
+      "numero": 37,
+      "nom_arabe": "الصافات",
+      "nom_translittere": "As-Saffat",
+      "nom_francais": "Les Rangées",
+      "nombre_versets": 182,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 56,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 38,
+    "fields": {
+      "numero": 38,
+      "nom_arabe": "ص",
+      "nom_translittere": "Sad",
+      "nom_francais": "Sad",
+      "nombre_versets": 88,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 38,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 39,
+    "fields": {
+      "numero": 39,
+      "nom_arabe": "الزمر",
+      "nom_translittere": "Az-Zumar",
+      "nom_francais": "Les Groupes",
+      "nombre_versets": 75,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 59,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 40,
+    "fields": {
+      "numero": 40,
+      "nom_arabe": "غافر",
+      "nom_translittere": "Ghafir",
+      "nom_francais": "Le Pardonneur",
+      "nombre_versets": 85,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 60,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 41,
+    "fields": {
+      "numero": 41,
+      "nom_arabe": "فصلت",
+      "nom_translittere": "Fussilat",
+      "nom_francais": "Exposées en Détail",
+      "nombre_versets": 54,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 61,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 42,
+    "fields": {
+      "numero": 42,
+      "nom_arabe": "الشورى",
+      "nom_translittere": "Ash-Shura",
+      "nom_francais": "La Consultation",
+      "nombre_versets": 53,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 62,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 43,
+    "fields": {
+      "numero": 43,
+      "nom_arabe": "الزخرف",
+      "nom_translittere": "Az-Zukhruf",
+      "nom_francais": "L'Ornement",
+      "nombre_versets": 89,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 63,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 44,
+    "fields": {
+      "numero": 44,
+      "nom_arabe": "الدخان",
+      "nom_translittere": "Ad-Dukhan",
+      "nom_francais": "La Fumée",
+      "nombre_versets": 59,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 64,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 3
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 45,
+    "fields": {
+      "numero": 45,
+      "nom_arabe": "الجاثية",
+      "nom_translittere": "Al-Jathiya",
+      "nom_francais": "L'Agenouillée",
+      "nombre_versets": 37,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 65,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 46,
+    "fields": {
+      "numero": 46,
+      "nom_arabe": "الأحقاف",
+      "nom_translittere": "Al-Ahqaf",
+      "nom_francais": "Les Dunes",
+      "nombre_versets": 35,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 66,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 47,
+    "fields": {
+      "numero": 47,
+      "nom_arabe": "محمد",
+      "nom_translittere": "Muhammad",
+      "nom_francais": "Muhammad",
+      "nombre_versets": 38,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 95,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 48,
+    "fields": {
+      "numero": 48,
+      "nom_arabe": "الفتح",
+      "nom_translittere": "Al-Fath",
+      "nom_francais": "La Victoire",
+      "nombre_versets": 29,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 111,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 49,
+    "fields": {
+      "numero": 49,
+      "nom_arabe": "الحجرات",
+      "nom_translittere": "Al-Hujurat",
+      "nom_francais": "Les Appartements",
+      "nombre_versets": 18,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 106,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 50,
+    "fields": {
+      "numero": 50,
+      "nom_arabe": "ق",
+      "nom_translittere": "Qaf",
+      "nom_francais": "Qaf",
+      "nombre_versets": 45,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 34,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 51,
+    "fields": {
+      "numero": 51,
+      "nom_arabe": "الذاريات",
+      "nom_translittere": "Adh-Dhariyat",
+      "nom_francais": "Les Vents Dispersants",
+      "nombre_versets": 60,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 67,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 52,
+    "fields": {
+      "numero": 52,
+      "nom_arabe": "الطور",
+      "nom_translittere": "At-Tur",
+      "nom_francais": "Le Mont",
+      "nombre_versets": 49,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 76,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 53,
+    "fields": {
+      "numero": 53,
+      "nom_arabe": "النجم",
+      "nom_translittere": "An-Najm",
+      "nom_francais": "L'Étoile",
+      "nombre_versets": 62,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 23,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 54,
+    "fields": {
+      "numero": 54,
+      "nom_arabe": "القمر",
+      "nom_translittere": "Al-Qamar",
+      "nom_francais": "La Lune",
+      "nombre_versets": 55,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 37,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 55,
+    "fields": {
+      "numero": 55,
+      "nom_arabe": "الرحمن",
+      "nom_translittere": "Ar-Rahman",
+      "nom_francais": "Le Tout-Miséricordieux",
+      "nombre_versets": 78,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 97,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 56,
+    "fields": {
+      "numero": 56,
+      "nom_arabe": "الواقعة",
+      "nom_translittere": "Al-Waqi'a",
+      "nom_francais": "L'Événement",
+      "nombre_versets": 96,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 46,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 57,
+    "fields": {
+      "numero": 57,
+      "nom_arabe": "الحديد",
+      "nom_translittere": "Al-Hadid",
+      "nom_francais": "Le Fer",
+      "nombre_versets": 29,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 94,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 58,
+    "fields": {
+      "numero": 58,
+      "nom_arabe": "المجادلة",
+      "nom_translittere": "Al-Mujadila",
+      "nom_francais": "La Discussion",
+      "nombre_versets": 22,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 105,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 59,
+    "fields": {
+      "numero": 59,
+      "nom_arabe": "الحشر",
+      "nom_translittere": "Al-Hashr",
+      "nom_francais": "L'Exode",
+      "nombre_versets": 24,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 101,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 60,
+    "fields": {
+      "numero": 60,
+      "nom_arabe": "الممتحنة",
+      "nom_translittere": "Al-Mumtahana",
+      "nom_francais": "L'Éprouvée",
+      "nombre_versets": 13,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 91,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 61,
+    "fields": {
+      "numero": 61,
+      "nom_arabe": "الصف",
+      "nom_translittere": "As-Saff",
+      "nom_francais": "Le Rang",
+      "nombre_versets": 14,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 109,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 62,
+    "fields": {
+      "numero": 62,
+      "nom_arabe": "الجمعة",
+      "nom_translittere": "Al-Jumu'a",
+      "nom_francais": "Le Vendredi",
+      "nombre_versets": 11,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 110,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 63,
+    "fields": {
+      "numero": 63,
+      "nom_arabe": "المنافقون",
+      "nom_translittere": "Al-Munafiqun",
+      "nom_francais": "Les Hypocrites",
+      "nombre_versets": 11,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 104,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 64,
+    "fields": {
+      "numero": 64,
+      "nom_arabe": "التغابن",
+      "nom_translittere": "At-Taghabun",
+      "nom_francais": "La Dépossession",
+      "nombre_versets": 18,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 108,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 65,
+    "fields": {
+      "numero": 65,
+      "nom_arabe": "الطلاق",
+      "nom_translittere": "At-Talaq",
+      "nom_francais": "Le Divorce",
+      "nombre_versets": 12,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 99,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 66,
+    "fields": {
+      "numero": 66,
+      "nom_arabe": "التحريم",
+      "nom_translittere": "At-Tahrim",
+      "nom_francais": "La Prohibition",
+      "nombre_versets": 12,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 107,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 67,
+    "fields": {
+      "numero": 67,
+      "nom_arabe": "الملك",
+      "nom_translittere": "Al-Mulk",
+      "nom_francais": "La Royauté",
+      "nombre_versets": 30,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 77,
+      "description_fr": "Sourate recommandée pour le collège. Thème : la souveraineté d'Allah.",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 68,
+    "fields": {
+      "numero": 68,
+      "nom_arabe": "القلم",
+      "nom_translittere": "Al-Qalam",
+      "nom_francais": "La Plume",
+      "nombre_versets": 52,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 2,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 69,
+    "fields": {
+      "numero": 69,
+      "nom_arabe": "الحاقة",
+      "nom_translittere": "Al-Haqqa",
+      "nom_francais": "La Réalité Inévitable",
+      "nombre_versets": 52,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 78,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 70,
+    "fields": {
+      "numero": 70,
+      "nom_arabe": "المعارج",
+      "nom_translittere": "Al-Ma'arij",
+      "nom_francais": "Les Voies d'Ascension",
+      "nombre_versets": 44,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 79,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 71,
+    "fields": {
+      "numero": 71,
+      "nom_arabe": "نوح",
+      "nom_translittere": "Nuh",
+      "nom_francais": "Noé",
+      "nombre_versets": 28,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 71,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 72,
+    "fields": {
+      "numero": 72,
+      "nom_arabe": "الجن",
+      "nom_translittere": "Al-Jinn",
+      "nom_francais": "Les Djinns",
+      "nombre_versets": 28,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 40,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 73,
+    "fields": {
+      "numero": 73,
+      "nom_arabe": "المزمل",
+      "nom_translittere": "Al-Muzzammil",
+      "nom_francais": "L'Enveloppé",
+      "nombre_versets": 20,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 3,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 74,
+    "fields": {
+      "numero": 74,
+      "nom_arabe": "المدثر",
+      "nom_translittere": "Al-Muddaththir",
+      "nom_francais": "Enveloppé dans son Manteau",
+      "nombre_versets": 56,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 4,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 75,
+    "fields": {
+      "numero": 75,
+      "nom_arabe": "القيامة",
+      "nom_translittere": "Al-Qiyama",
+      "nom_francais": "La Résurrection",
+      "nombre_versets": 40,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 31,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 76,
+    "fields": {
+      "numero": 76,
+      "nom_arabe": "الإنسان",
+      "nom_translittere": "Al-Insan",
+      "nom_francais": "L'Homme",
+      "nombre_versets": 31,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 98,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 77,
+    "fields": {
+      "numero": 77,
+      "nom_arabe": "المرسلات",
+      "nom_translittere": "Al-Mursalat",
+      "nom_francais": "Les Envoyés",
+      "nombre_versets": 50,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 33,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 78,
+    "fields": {
+      "numero": 78,
+      "nom_arabe": "النبأ",
+      "nom_translittere": "An-Naba",
+      "nom_francais": "La Nouvelle",
+      "nombre_versets": 40,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 80,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 79,
+    "fields": {
+      "numero": 79,
+      "nom_arabe": "النازعات",
+      "nom_translittere": "An-Nazi'at",
+      "nom_francais": "Les Arracheurs",
+      "nombre_versets": 46,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 81,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 2
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 80,
+    "fields": {
+      "numero": 80,
+      "nom_arabe": "عبس",
+      "nom_translittere": "Abasa",
+      "nom_francais": "Il a Froncé les Sourcils",
+      "nombre_versets": 42,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 24,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 81,
+    "fields": {
+      "numero": 81,
+      "nom_arabe": "التكوير",
+      "nom_translittere": "At-Takwir",
+      "nom_francais": "L'Enroulement",
+      "nombre_versets": 29,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 7,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 82,
+    "fields": {
+      "numero": 82,
+      "nom_arabe": "الانفطار",
+      "nom_translittere": "Al-Infitar",
+      "nom_francais": "La Déchirure",
+      "nombre_versets": 19,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 82,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 83,
+    "fields": {
+      "numero": 83,
+      "nom_arabe": "المطففين",
+      "nom_translittere": "Al-Mutaffifin",
+      "nom_francais": "Les Fraudeurs",
+      "nombre_versets": 36,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 86,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 84,
+    "fields": {
+      "numero": 84,
+      "nom_arabe": "الانشقاق",
+      "nom_translittere": "Al-Inshiqaq",
+      "nom_francais": "La Fente",
+      "nombre_versets": 25,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 83,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 85,
+    "fields": {
+      "numero": 85,
+      "nom_arabe": "البروج",
+      "nom_translittere": "Al-Buruj",
+      "nom_francais": "Les Constellations",
+      "nombre_versets": 22,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 27,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 86,
+    "fields": {
+      "numero": 86,
+      "nom_arabe": "الطارق",
+      "nom_translittere": "At-Tariq",
+      "nom_francais": "L'Astre Nocturne",
+      "nombre_versets": 17,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 36,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 87,
+    "fields": {
+      "numero": 87,
+      "nom_arabe": "الأعلى",
+      "nom_translittere": "Al-A'la",
+      "nom_francais": "Le Très-Haut",
+      "nombre_versets": 19,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 8,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 88,
+    "fields": {
+      "numero": 88,
+      "nom_arabe": "الغاشية",
+      "nom_translittere": "Al-Ghashiya",
+      "nom_francais": "L'Enveloppant",
+      "nombre_versets": 26,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 68,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 89,
+    "fields": {
+      "numero": 89,
+      "nom_arabe": "الفجر",
+      "nom_translittere": "Al-Fajr",
+      "nom_francais": "L'Aurore",
+      "nombre_versets": 30,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 10,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 90,
+    "fields": {
+      "numero": 90,
+      "nom_arabe": "البلد",
+      "nom_translittere": "Al-Balad",
+      "nom_francais": "La Cité",
+      "nombre_versets": 20,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 35,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 91,
+    "fields": {
+      "numero": 91,
+      "nom_arabe": "الشمس",
+      "nom_translittere": "Ash-Shams",
+      "nom_francais": "Le Soleil",
+      "nombre_versets": 15,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 26,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 92,
+    "fields": {
+      "numero": 92,
+      "nom_arabe": "الليل",
+      "nom_translittere": "Al-Layl",
+      "nom_francais": "La Nuit",
+      "nombre_versets": 21,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 9,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 93,
+    "fields": {
+      "numero": 93,
+      "nom_arabe": "الضحى",
+      "nom_translittere": "Ad-Duha",
+      "nom_francais": "La Matinée",
+      "nombre_versets": 11,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 11,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 94,
+    "fields": {
+      "numero": 94,
+      "nom_arabe": "الشرح",
+      "nom_translittere": "Ash-Sharh",
+      "nom_francais": "L'Élargissement",
+      "nombre_versets": 8,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 12,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 95,
+    "fields": {
+      "numero": 95,
+      "nom_arabe": "التين",
+      "nom_translittere": "At-Tin",
+      "nom_francais": "Le Figuier",
+      "nombre_versets": 8,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 28,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 96,
+    "fields": {
+      "numero": 96,
+      "nom_arabe": "العلق",
+      "nom_translittere": "Al-Alaq",
+      "nom_francais": "Le Caillot de Sang",
+      "nombre_versets": 19,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 1,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 97,
+    "fields": {
+      "numero": 97,
+      "nom_arabe": "القدر",
+      "nom_translittere": "Al-Qadr",
+      "nom_francais": "La Nuit du Destin",
+      "nombre_versets": 5,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 25,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 98,
+    "fields": {
+      "numero": 98,
+      "nom_arabe": "البينة",
+      "nom_translittere": "Al-Bayyina",
+      "nom_francais": "La Preuve Évidente",
+      "nombre_versets": 8,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 100,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 99,
+    "fields": {
+      "numero": 99,
+      "nom_arabe": "الزلزلة",
+      "nom_translittere": "Az-Zalzala",
+      "nom_francais": "Le Séisme",
+      "nombre_versets": 8,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 93,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 100,
+    "fields": {
+      "numero": 100,
+      "nom_arabe": "العاديات",
+      "nom_translittere": "Al-Adiyat",
+      "nom_francais": "Les Coursiers",
+      "nombre_versets": 11,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 14,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 101,
+    "fields": {
+      "numero": 101,
+      "nom_arabe": "القارعة",
+      "nom_translittere": "Al-Qari'a",
+      "nom_francais": "Le Fracas",
+      "nombre_versets": 11,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 30,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 102,
+    "fields": {
+      "numero": 102,
+      "nom_arabe": "التكاثر",
+      "nom_translittere": "At-Takathur",
+      "nom_francais": "La Course aux Richesses",
+      "nombre_versets": 8,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 16,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 103,
+    "fields": {
+      "numero": 103,
+      "nom_arabe": "العصر",
+      "nom_translittere": "Al-Asr",
+      "nom_francais": "Le Temps",
+      "nombre_versets": 3,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 13,
+      "description_fr": "Sourate très courte sur l'importance du temps et de la foi.",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 104,
+    "fields": {
+      "numero": 104,
+      "nom_arabe": "الهمزة",
+      "nom_translittere": "Al-Humaza",
+      "nom_francais": "Le Calomniateur",
+      "nombre_versets": 9,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 32,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 105,
+    "fields": {
+      "numero": 105,
+      "nom_arabe": "الفيل",
+      "nom_translittere": "Al-Fil",
+      "nom_francais": "L'Éléphant",
+      "nombre_versets": 5,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 19,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 106,
+    "fields": {
+      "numero": 106,
+      "nom_arabe": "قريش",
+      "nom_translittere": "Quraysh",
+      "nom_francais": "Quraysh",
+      "nombre_versets": 4,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 29,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 107,
+    "fields": {
+      "numero": 107,
+      "nom_arabe": "الماعون",
+      "nom_translittere": "Al-Ma'un",
+      "nom_francais": "L'Ustensile",
+      "nombre_versets": 7,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 17,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 108,
+    "fields": {
+      "numero": 108,
+      "nom_arabe": "الكوثر",
+      "nom_translittere": "Al-Kawthar",
+      "nom_francais": "L'Abondance",
+      "nombre_versets": 3,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 15,
+      "description_fr": "La sourate la plus courte du Coran (3 versets).",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 109,
+    "fields": {
+      "numero": 109,
+      "nom_arabe": "الكافرون",
+      "nom_translittere": "Al-Kafirun",
+      "nom_francais": "Les Incroyants",
+      "nombre_versets": 6,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 18,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 110,
+    "fields": {
+      "numero": 110,
+      "nom_arabe": "النصر",
+      "nom_translittere": "An-Nasr",
+      "nom_francais": "Le Secours Divin",
+      "nombre_versets": 3,
+      "type_revelation": "medinoise",
+      "ordre_revelation": 114,
+      "description_fr": "Une des dernières sourates révélées, sur la victoire de l'Islam.",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 111,
+    "fields": {
+      "numero": 111,
+      "nom_arabe": "المسد",
+      "nom_translittere": "Al-Masad",
+      "nom_francais": "La Fibre de Palmier",
+      "nombre_versets": 5,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 6,
+      "description_fr": "",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 112,
+    "fields": {
+      "numero": 112,
+      "nom_arabe": "الإخلاص",
+      "nom_translittere": "Al-Ikhlas",
+      "nom_francais": "Le Monothéisme Pur",
+      "nombre_versets": 4,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 22,
+      "description_fr": "Sourate fondamentale sur l'unicité d'Allah. Idéale pour les débutants (CI/CP).",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 113,
+    "fields": {
+      "numero": 113,
+      "nom_arabe": "الفلق",
+      "nom_translittere": "Al-Falaq",
+      "nom_francais": "L'Aube",
+      "nombre_versets": 5,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 20,
+      "description_fr": "Sourate de protection, apprise dès le primaire.",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  },
+  {
+    "model": "quran.surah",
+    "pk": 114,
+    "fields": {
+      "numero": 114,
+      "nom_arabe": "الناس",
+      "nom_translittere": "An-Nas",
+      "nom_francais": "Les Hommes",
+      "nombre_versets": 6,
+      "type_revelation": "mecquoise",
+      "ordre_revelation": 21,
+      "description_fr": "Dernière sourate du Coran, protection contre les mauvaises influences.",
+      "audio_url": "",
+      "niveau_difficulte": 1
+    }
+  }
+]

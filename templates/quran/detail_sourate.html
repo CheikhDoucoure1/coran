@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block title %}{{ surah.nom_translittere }} - Sourate {{ surah.numero }}{% endblock %}
+
+{% block content %}
+<!-- En-tête Sourate -->
+<div class="card mb-4" style="background: linear-gradient(135deg, #006B30, #009A44); color: white;">
+  <div class="card-body py-4">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <nav aria-label="breadcrumb" class="mb-2">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="{% url 'liste_sourates' %}" class="text-white-50">Sourates</a></li>
+            <li class="breadcrumb-item active text-white">{{ surah.nom_translittere }}</li>
+          </ol>
+        </nav>
+        <h2 class="fw-bold mb-1">{{ surah.numero }}. {{ surah.nom_translittere }}</h2>
+        <p class="mb-2 opacity-75">{{ surah.nom_francais }} &mdash; {{ surah.nombre_versets }} versets &mdash; {{ surah.get_type_revelation_display }}</p>
+        {% if surah.description_fr %}
+        <p class="small opacity-75 mb-0">{{ surah.description_fr }}</p>
+        {% endif %}
+      </div>
+      <div class="col-md-4 text-md-end">
+        <div class="arabic-text" style="font-size: 2.5rem; color: #FDEF42;">{{ surah.nom_arabe }}</div>
+        {% if progression %}
+        <div class="mt-2">
+          <small>Progression : {{ progression.pourcentage }}%</small>
+          <div class="progress mt-1" style="height: 6px;">
+            <div class="progress-bar bg-warning" style="width: {{ progression.pourcentage }}%"></div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bismillah (sauf sourate 9) -->
+{% if surah.numero != 9 %}
+<div class="text-center mb-4 py-3">
+  <div class="arabic-text" style="font-size: 2rem; color: #006B30;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+  <div class="transliteration mt-1">Bismi llāhi r-raḥmāni r-raḥīm</div>
+  <div class="text-muted small">Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux</div>
+</div>
+{% endif %}
+
+<!-- Versets -->
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <span><i class="bi bi-list-ol me-2"></i>Versets</span>
+    <div class="btn-group btn-group-sm" role="group">
+      <button type="button" class="btn btn-outline-secondary active" id="btn-complet">Complet</button>
+      <button type="button" class="btn btn-outline-secondary" id="btn-arabe">Arabe seul</button>
+    </div>
+  </div>
+  <div class="card-body p-0">
+    {% for verset in versets %}
+    <div class="verset-item p-4 border-bottom">
+      <div class="d-flex gap-3">
+        <div class="text-center" style="min-width: 36px;">
+          <span class="badge bg-success rounded-circle px-2 py-1">{{ verset.numero }}</span>
+        </div>
+        <div class="flex-grow-1">
+          <!-- Texte Arabe -->
+          <div class="text-end mb-2">
+            <p class="arabic-text mb-0">{{ verset.texte_arabe }}</p>
+          </div>
+          <!-- Translittération -->
+          {% if verset.translitteration %}
+          <p class="transliteration mb-1 traduction-zone">{{ verset.translitteration }}</p>
+          {% endif %}
+          <!-- Traduction Française -->
+          {% if verset.traduction_fr %}
+          <p class="text-secondary mb-1 traduction-zone"><small><strong class="text-success">FR :</strong> {{ verset.traduction_fr }}</small></p>
+          {% endif %}
+          <!-- Traduction Wolof -->
+          {% if verset.traduction_wolof %}
+          <p class="text-secondary mb-0 traduction-zone"><small><strong class="text-warning">WO :</strong> {{ verset.traduction_wolof }}</small></p>
+          {% endif %}
+          <!-- Notes pédagogiques -->
+          {% if verset.notes_pedagogiques %}
+          <div class="mt-2 p-2 rounded" style="background: #f0faf5; border-left: 3px solid #009A44;">
+            <small class="text-success"><i class="bi bi-lightbulb me-1"></i><strong>Note pédagogique :</strong> {{ verset.notes_pedagogiques }}</small>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="text-center text-muted py-5">Versets non encore saisis.</div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Navigation -->
+<div class="d-flex justify-content-between mt-4">
+  {% if prev_surah %}
+  <a href="{% url 'detail_sourate' prev_surah.numero %}" class="btn btn-outline-success">
+    <i class="bi bi-chevron-left me-1"></i>{{ prev_surah.nom_translittere }}
+  </a>
+  {% else %}<div></div>{% endif %}
+  {% if next_surah %}
+  <a href="{% url 'detail_sourate' next_surah.numero %}" class="btn btn-outline-success">
+    {{ next_surah.nom_translittere }}<i class="bi bi-chevron-right ms-1"></i>
+  </a>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('btn-arabe').addEventListener('click', function() {
+  document.querySelectorAll('.traduction-zone').forEach(el => el.style.display = 'none');
+  this.classList.add('active');
+  document.getElementById('btn-complet').classList.remove('active');
+});
+document.getElementById('btn-complet').addEventListener('click', function() {
+  document.querySelectorAll('.traduction-zone').forEach(el => el.style.display = '');
+  this.classList.add('active');
+  document.getElementById('btn-arabe').classList.remove('active');
+});
+</script>
+{% endblock %}

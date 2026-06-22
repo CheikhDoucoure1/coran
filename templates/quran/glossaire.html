@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Glossaire Islamique - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold mb-0"><i class="bi bi-journal-text me-2 text-success"></i>Glossaire Islamique</h2>
+</div>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <form method="get" class="row g-3">
+      <div class="col-md-8">
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-search text-success"></i></span>
+          <input type="text" name="q" class="form-control" placeholder="Rechercher un terme en arabe, français ou wolof..." value="{{ query }}">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-primary w-100">Rechercher</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row g-3">
+  {% for terme in termes %}
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <h5 class="arabic-text-sm text-success mb-0">{{ terme.terme_arabe }}</h5>
+          {% if terme.verset_reference %}
+          <span class="badge bg-light text-success border border-success" style="font-size: 0.7rem;">
+            S.{{ terme.verset_reference.surah.numero }}:{{ terme.verset_reference.numero }}
+          </span>
+          {% endif %}
+        </div>
+        <h6 class="fw-bold mb-1">{{ terme.terme_francais }}</h6>
+        {% if terme.terme_wolof %}
+        <p class="text-muted small mb-2"><i class="bi bi-translate me-1"></i>Wolof : <em>{{ terme.terme_wolof }}</em></p>
+        {% endif %}
+        <p class="text-secondary small mb-0">{{ terme.definition_fr }}</p>
+        {% if terme.exemple_utilisation %}
+        <div class="mt-2 p-2 rounded" style="background:#f0faf5; border-left:3px solid #009A44;">
+          <small class="text-muted"><i class="bi bi-lightbulb me-1 text-success"></i>{{ terme.exemple_utilisation }}</small>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12 text-center py-5">
+    <i class="bi bi-journal-x text-muted fs-1"></i>
+    <p class="text-muted mt-3">
+      {% if query %}Aucun terme trouvé pour "{{ query }}".{% else %}Le glossaire est vide pour le moment.{% endif %}
+    </p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

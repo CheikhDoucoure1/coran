@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Curriculum par Niveau - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold mb-0"><i class="bi bi-mortarboard me-2 text-success"></i>Curriculum par Niveau</h2>
+</div>
+
+<!-- Primaire -->
+<h5 class="text-success fw-bold mb-3 mt-4"><i class="bi bi-star me-2"></i>Enseignement Primaire</h5>
+<div class="row g-3 mb-4">
+  {% for niveau in niveaux %}
+  {% if niveau.cycle == 'primaire' %}
+  <div class="col-sm-6 col-md-4 col-lg-3">
+    <a href="{% url 'programme_niveau' niveau.code %}" class="text-decoration-none">
+      <div class="card surah-card h-100 text-center p-3">
+        <div class="fs-2 fw-bold text-success mb-1">{{ niveau.code }}</div>
+        <div class="fw-semibold small">{{ niveau.nom }}</div>
+        {% if niveau.programme %}
+        <span class="badge bg-success mt-2" style="font-size:0.65rem;">Programme défini</span>
+        {% else %}
+        <span class="badge bg-secondary mt-2" style="font-size:0.65rem;">À compléter</span>
+        {% endif %}
+      </div>
+    </a>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<!-- Moyen -->
+<h5 class="text-warning fw-bold mb-3 mt-2"><i class="bi bi-star-half me-2"></i>Enseignement Moyen (Collège)</h5>
+<div class="row g-3 mb-4">
+  {% for niveau in niveaux %}
+  {% if niveau.cycle == 'moyen' %}
+  <div class="col-sm-6 col-md-4 col-lg-3">
+    <a href="{% url 'programme_niveau' niveau.code %}" class="text-decoration-none">
+      <div class="card surah-card h-100 text-center p-3">
+        <div class="fs-2 fw-bold text-warning mb-1">{{ niveau.code }}</div>
+        <div class="fw-semibold small">{{ niveau.nom }}</div>
+        {% if niveau.programme %}
+        <span class="badge bg-success mt-2" style="font-size:0.65rem;">Programme défini</span>
+        {% else %}
+        <span class="badge bg-secondary mt-2" style="font-size:0.65rem;">À compléter</span>
+        {% endif %}
+      </div>
+    </a>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<!-- Secondaire -->
+<h5 class="text-danger fw-bold mb-3 mt-2"><i class="bi bi-star-fill me-2"></i>Enseignement Secondaire (Lycée)</h5>
+<div class="row g-3">
+  {% for niveau in niveaux %}
+  {% if niveau.cycle == 'secondaire' %}
+  <div class="col-sm-6 col-md-4 col-lg-3">
+    <a href="{% url 'programme_niveau' niveau.code %}" class="text-decoration-none">
+      <div class="card surah-card h-100 text-center p-3">
+        <div class="fs-2 fw-bold text-danger mb-1">{{ niveau.code }}</div>
+        <div class="fw-semibold small">{{ niveau.nom }}</div>
+        {% if niveau.programme %}
+        <span class="badge bg-success mt-2" style="font-size:0.65rem;">Programme défini</span>
+        {% else %}
+        <span class="badge bg-secondary mt-2" style="font-size:0.65rem;">À compléter</span>
+        {% endif %}
+      </div>
+    </a>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}

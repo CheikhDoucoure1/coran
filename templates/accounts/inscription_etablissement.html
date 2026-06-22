@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% block title %}Inscription Établissement - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+
+      <!-- En-tête -->
+      <div class="text-center mb-4">
+        <div class="arabic-text-sm text-success mb-2">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <h2 class="fw-bold">Inscrire mon établissement</h2>
+        <p class="text-muted">Créez le compte de votre école sur la plateforme Coran Sénégal</p>
+      </div>
+
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+
+        <!-- Section 1 : Établissement -->
+        <div class="card mb-4">
+          <div class="card-header py-3" style="background: linear-gradient(135deg, #006B30, #009A44); color: white; border-radius: 12px 12px 0 0;">
+            <h5 class="mb-0"><i class="bi bi-building me-2"></i>Informations sur l'établissement</h5>
+          </div>
+          <div class="card-body p-4">
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">{{ form.nom.label }} <span class="text-danger">*</span></label>
+              {{ form.nom }}
+              {% if form.nom.errors %}
+                <div class="text-danger small mt-1">{{ form.nom.errors.0 }}</div>
+              {% endif %}
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.type_etablissement.label }} <span class="text-danger">*</span></label>
+                {{ form.type_etablissement }}
+                {% if form.type_etablissement.errors %}
+                  <div class="text-danger small mt-1">{{ form.type_etablissement.errors.0 }}</div>
+                {% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.region.label }} <span class="text-danger">*</span></label>
+                {{ form.region }}
+                {% if form.region.errors %}
+                  <div class="text-danger small mt-1">{{ form.region.errors.0 }}</div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="row g-3 mt-1">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.departement.label }}</label>
+                {{ form.departement }}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.commune.label }}</label>
+                {{ form.commune }}
+              </div>
+            </div>
+
+            <div class="row g-3 mt-1">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.telephone_etablissement.label }}</label>
+                {{ form.telephone_etablissement }}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.email_etablissement.label }}</label>
+                {{ form.email_etablissement }}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section 2 : Compte administrateur -->
+        <div class="card mb-4">
+          <div class="card-header py-3" style="background: linear-gradient(135deg, #005a82, #0078a8); color: white; border-radius: 12px 12px 0 0;">
+            <h5 class="mb-0"><i class="bi bi-person-badge me-2"></i>Compte du directeur / responsable</h5>
+          </div>
+          <div class="card-body p-4">
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.prenom.label }} <span class="text-danger">*</span></label>
+                {{ form.prenom }}
+                {% if form.prenom.errors %}
+                  <div class="text-danger small mt-1">{{ form.prenom.errors.0 }}</div>
+                {% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.nom_directeur.label }} <span class="text-danger">*</span></label>
+                {{ form.nom_directeur }}
+                {% if form.nom_directeur.errors %}
+                  <div class="text-danger small mt-1">{{ form.nom_directeur.errors.0 }}</div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="row g-3 mt-1">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.email.label }} <span class="text-danger">*</span></label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                  <div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>
+                {% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.telephone.label }}</label>
+                {{ form.telephone }}
+              </div>
+            </div>
+
+            <hr class="my-3">
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">{{ form.username.label }} <span class="text-danger">*</span></label>
+              {{ form.username }}
+              <div class="form-text">Sera utilisé pour se connecter. Lettres, chiffres et _ uniquement. Ex: epca_dakar</div>
+              {% if form.username.errors %}
+                <div class="text-danger small mt-1">{{ form.username.errors.0 }}</div>
+              {% endif %}
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.password1.label }} <span class="text-danger">*</span></label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                  <div class="text-danger small mt-1">{{ form.password1.errors.0 }}</div>
+                {% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">{{ form.password2.label }} <span class="text-danger">*</span></label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                  <div class="text-danger small mt-1">{{ form.password2.errors.0 }}</div>
+                {% endif %}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Récapitulatif des erreurs globales -->
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+              <div>{{ error }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Boutons -->
+        <div class="d-flex gap-3 justify-content-between align-items-center">
+          <a href="{% url 'connexion' %}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-2"></i>Retour à la connexion
+          </a>
+          <button type="submit" class="btn btn-primary btn-lg px-5 fw-bold">
+            <i class="bi bi-check-circle me-2"></i>Créer le compte
+          </button>
+        </div>
+
+        <p class="text-center text-muted small mt-3">
+          <i class="bi bi-shield-check me-1 text-success"></i>
+          Vos données sont sécurisées et utilisées uniquement dans le cadre de la plateforme Coran Sénégal.
+        </p>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

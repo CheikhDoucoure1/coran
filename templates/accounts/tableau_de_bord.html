@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% block title %}Tableau de Bord - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="fw-bold mb-1">Tableau de Bord</h2>
+    <p class="text-muted mb-0">
+      Bienvenue, <strong>{{ user.get_full_name|default:user.username }}</strong> &mdash;
+      <span class="badge bg-success">{{ user.get_role_display }}</span>
+    </p>
+  </div>
+</div>
+
+{% if user.role == 'admin' %}
+<!-- Dashboard Admin -->
+<div class="row g-4 mb-5">
+  <div class="col-sm-6 col-xl-3">
+    <div class="card stat-card p-4">
+      <div class="d-flex align-items-center">
+        <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
+          <i class="bi bi-people-fill text-success fs-4"></i>
+        </div>
+        <div>
+          <div class="fs-2 fw-bold">{{ total_eleves }}</div>
+          <small class="text-muted">Élèves inscrits</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <div class="card stat-card p-4">
+      <div class="d-flex align-items-center">
+        <div class="rounded-circle bg-warning bg-opacity-10 p-3 me-3">
+          <i class="bi bi-person-video3 text-warning fs-4"></i>
+        </div>
+        <div>
+          <div class="fs-2 fw-bold">{{ total_enseignants }}</div>
+          <small class="text-muted">Enseignants</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <div class="card stat-card p-4">
+      <div class="d-flex align-items-center">
+        <div class="rounded-circle bg-info bg-opacity-10 p-3 me-3">
+          <i class="bi bi-building text-info fs-4"></i>
+        </div>
+        <div>
+          <div class="fs-2 fw-bold">{{ total_etablissements }}</div>
+          <small class="text-muted">Établissements</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <div class="card stat-card p-4">
+      <div class="d-flex align-items-center">
+        <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
+          <i class="bi bi-door-open text-success fs-4"></i>
+        </div>
+        <div>
+          <div class="fs-2 fw-bold">{{ total_classes }}</div>
+          <small class="text-muted">Classes actives</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row g-4">
+  <div class="col-md-4">
+    <a href="/admin/" class="card p-4 text-center text-decoration-none surah-card d-block">
+      <i class="bi bi-gear-fill text-success fs-1 mb-3 d-block"></i>
+      <h6 class="fw-bold">Administration</h6>
+      <p class="text-muted small">Gérer utilisateurs, classes, contenus</p>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="{% url 'liste_plans_lecon' %}" class="card p-4 text-center text-decoration-none surah-card d-block">
+      <i class="bi bi-journal-plus text-success fs-1 mb-3 d-block"></i>
+      <h6 class="fw-bold">Plans de Leçons</h6>
+      <p class="text-muted small">Valider et gérer les plans</p>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="/api/docs/" class="card p-4 text-center text-decoration-none surah-card d-block">
+      <i class="bi bi-code-square text-success fs-1 mb-3 d-block"></i>
+      <h6 class="fw-bold">Documentation API</h6>
+      <p class="text-muted small">Interface Swagger REST API</p>
+    </a>
+  </div>
+</div>
+
+{% elif user.role == 'enseignant' %}
+<!-- Dashboard Enseignant -->
+<div class="row g-4">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header bg-success text-white"><i class="bi bi-people me-2"></i>Mes Classes</div>
+      <div class="card-body">
+        {% for classe in mes_classes %}
+        <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
+          <div>
+            <h6 class="mb-0 fw-bold">{{ classe.nom }}</h6>
+            <small class="text-muted">{{ classe.etablissement.nom }} — {{ classe.eleves.count }} élève(s)</small>
+          </div>
+          <a href="{% url 'tableau_classe' classe.pk %}" class="btn btn-sm btn-outline-success">
+            <i class="bi bi-eye me-1"></i>Voir
+          </a>
+        </div>
+        {% empty %}
+        <p class="text-muted text-center py-4">Aucune classe assignée pour le moment.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header bg-success text-white"><i class="bi bi-lightning me-2"></i>Actions Rapides</div>
+      <div class="card-body d-grid gap-2">
+        <a href="{% url 'enregistrer_session' %}" class="btn btn-outline-success">
+          <i class="bi bi-mic me-2"></i>Évaluer une Récitation
+        </a>
+        <a href="{% url 'creer_quiz' %}" class="btn btn-outline-success">
+          <i class="bi bi-plus-circle me-2"></i>Créer un Quiz
+        </a>
+        <a href="{% url 'creer_plan_lecon' %}" class="btn btn-outline-success">
+          <i class="bi bi-journal-plus me-2"></i>Nouveau Plan de Leçon
+        </a>
+        <a href="{% url 'liste_sourates' %}" class="btn btn-outline-success">
+          <i class="bi bi-book me-2"></i>Consulter le Coran
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% elif user.role == 'eleve' %}
+<!-- Dashboard Élève -->
+<div class="row g-4">
+  <div class="col-md-4">
+    <div class="card stat-card p-4 text-center">
+      <div class="fs-1 fw-bold text-success">{{ total_sourates_memorisees }}</div>
+      <p class="text-muted">Sourates mémorisées</p>
+      <a href="{% url 'ma_progression' %}" class="btn btn-sm btn-outline-success">Voir ma progression</a>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header bg-success text-white"><i class="bi bi-graph-up me-2"></i>Progression Récente</div>
+      <div class="card-body">
+        {% for progression in progressions %}
+        <div class="d-flex align-items-center mb-3">
+          <div class="me-3 text-center" style="min-width: 50px;">
+            <span class="arabic-text-sm">{{ progression.surah.nom_arabe }}</span>
+          </div>
+          <div class="flex-grow-1">
+            <div class="d-flex justify-content-between">
+              <small class="fw-semibold">{{ progression.surah.nom_translittere }}</small>
+              <small class="text-muted">{{ progression.pourcentage }}%</small>
+            </div>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar" style="width: {{ progression.pourcentage }}%"></div>
+            </div>
+          </div>
+          <span class="ms-3 badge {% if progression.statut == 'maitrise' %}bg-success{% elif progression.statut == 'memorise' %}bg-warning text-dark{% elif progression.statut == 'en_cours' %}bg-info{% else %}bg-secondary{% endif %}">
+            {{ progression.get_statut_display }}
+          </span>
+        </div>
+        {% empty %}
+        <p class="text-muted text-center py-4">Commencez votre progression en explorant le Coran !</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mt-0">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header bg-success text-white"><i class="bi bi-patch-question me-2"></i>Dernières Évaluations</div>
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead><tr><th>Quiz</th><th>Type</th><th>Note</th><th>Date</th><th></th></tr></thead>
+          <tbody>
+            {% for tentative in dernieres_tentatives %}
+            <tr>
+              <td class="fw-semibold">{{ tentative.quiz.titre }}</td>
+              <td><span class="badge bg-info">{{ tentative.quiz.get_type_quiz_display }}</span></td>
+              <td>
+                {% if tentative.note_obtenue is not None %}
+                <strong class="{% if tentative.pourcentage_reussite >= 50 %}text-success{% else %}text-danger{% endif %}">
+                  {{ tentative.note_obtenue }}/{{ tentative.quiz.note_maximale }}
+                </strong>
+                {% else %}<span class="text-muted">—</span>{% endif %}
+              </td>
+              <td class="text-muted small">{{ tentative.date_debut|date:"d/m/Y" }}</td>
+              <td>
+                {% if tentative.statut == 'soumis' %}
+                <a href="{% url 'resultat_quiz' tentative.quiz.pk %}" class="btn btn-sm btn-outline-success">Résultat</a>
+                {% endif %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" class="text-center text-muted py-4">Aucune évaluation passée.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

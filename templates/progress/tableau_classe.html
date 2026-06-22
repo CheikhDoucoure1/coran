@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Tableau de Classe - {{ classe.nom }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="fw-bold mb-1">{{ classe.nom }}</h2>
+    <p class="text-muted mb-0">{{ classe.etablissement.nom }} — {{ classe.annee_scolaire }}</p>
+  </div>
+  <a href="{% url 'enregistrer_session' %}" class="btn btn-primary">
+    <i class="bi bi-mic me-1"></i>Évaluer une Récitation
+  </a>
+</div>
+
+<div class="card">
+  <div class="card-header fw-bold"><i class="bi bi-people me-2"></i>Progression des Élèves ({{ donnees_eleves|length }} élève{{ donnees_eleves|length|pluralize }})</div>
+  <div class="table-responsive">
+    <table class="table table-hover mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>Élève</th>
+          <th>Mémorisées</th>
+          <th>En cours</th>
+          <th>Total suivi</th>
+          <th>Progression</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for donnee in donnees_eleves %}
+        <tr>
+          <td>
+            <div class="fw-semibold">{{ donnee.eleve.get_full_name|default:donnee.eleve.username }}</div>
+            <small class="text-muted">{{ donnee.eleve.username }}</small>
+          </td>
+          <td><span class="badge bg-success">{{ donnee.memorisees }}</span></td>
+          <td><span class="badge bg-warning text-dark">{{ donnee.en_cours }}</span></td>
+          <td class="text-muted">{{ donnee.total }}</td>
+          <td style="min-width:120px;">
+            {% if donnee.total > 0 %}
+            {% with pct=donnee.memorisees|floatformat:0 %}
+            <div class="progress" style="height:6px;">
+              <div class="progress-bar" style="width: {% widthratio donnee.memorisees donnee.total 100 %}%"></div>
+            </div>
+            <small class="text-muted">{% widthratio donnee.memorisees donnee.total 100 %}%</small>
+            {% endwith %}
+            {% else %}
+            <small class="text-muted">Pas encore commencé</small>
+            {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'progression_eleve' donnee.eleve.pk %}" class="btn btn-sm btn-outline-success">
+              <i class="bi bi-eye"></i>
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6" class="text-center text-muted py-4">Aucun élève dans cette classe.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

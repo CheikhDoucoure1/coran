@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %}Questions - {{ quiz.titre }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold mb-0"><i class="bi bi-list-ol me-2 text-success"></i>Questions du Quiz</h2>
+  <span class="badge bg-success fs-6">{{ quiz.titre }}</span>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-7">
+    <!-- Questions existantes -->
+    {% if questions %}
+    <div class="card mb-4">
+      <div class="card-header fw-bold"><i class="bi bi-check2-all me-2"></i>Questions ajoutées ({{ questions.count }})</div>
+      <div class="card-body p-0">
+        {% for q in questions %}
+        <div class="p-3 border-bottom">
+          <div class="d-flex gap-2 align-items-start">
+            <span class="badge bg-success">{{ forloop.counter }}</span>
+            <div class="flex-grow-1">
+              <p class="fw-semibold mb-1">{{ q.enonce }}</p>
+              <small class="text-muted">{{ q.get_type_question_display }} &mdash; {{ q.points }} point(s)</small>
+              {% if q.reponses.all %}
+              <ul class="list-unstyled mt-1 mb-0">
+                {% for rep in q.reponses.all %}
+                <li class="small {% if rep.est_correcte %}text-success fw-semibold{% else %}text-muted{% endif %}">
+                  <i class="bi bi-{% if rep.est_correcte %}check-circle-fill{% else %}circle{% endif %} me-1"></i>{{ rep.texte }}
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Publier le quiz -->
+    {% if questions %}
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="publier">
+      <button type="submit" class="btn btn-success w-100 py-2 fw-bold">
+        <i class="bi bi-send-check me-2"></i>Publier le Quiz ({{ questions.count }} question{{ questions.count|pluralize }})
+      </button>
+    </form>
+    {% endif %}
+  </div>
+
+  <div class="col-lg-5">
+    <!-- Ajouter une question -->
+    <div class="card">
+      <div class="card-header fw-bold bg-success text-white"><i class="bi bi-plus-circle me-2"></i>Ajouter une Question</div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="ajouter_question">
+          <div class="mb-3">
+            <label class="form-label fw-semibold small">Type <span class="text-danger">*</span></label>
+            <select name="type_question" class="form-select form-select-sm" id="type-select">
+              {% for val, label in types_question %}
+              <option value="{{ val }}">{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold small">Énoncé <span class="text-danger">*</span></label>
+            <textarea name="enonce" class="form-control form-control-sm" rows="3" placeholder="Question en français..." required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold small">Énoncé arabe (optionnel)</label>
+            <input type="text" name="enonce_arabe" class="form-control form-control-sm" placeholder="النص العربي" style="direction:rtl;">
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold small">Points</label>
+            <input type="number" name="points" class="form-control form-control-sm" value="1" min="0.5" step="0.5">
+          </div>
+
+          <div id="reponses-section">
+            <label class="form-label fw-semibold small">Réponses (cocher la/les bonne(s))</label>
+            {% for i in "1234" %}
+            <div class="input-group input-group-sm mb-2">
+              <div class="input-group-text">
+                <input type="checkbox" name="reponse_correcte" value="{{ forloop.counter0 }}" title="Bonne réponse">
+              </div>
+              <input type="text" name="reponse_texte" class="form-control" placeholder="Réponse {{ forloop.counter }}">
+            </div>
+            {% endfor %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold small">Explication (optionnel)</label>
+            <input type="text" name="explication" class="form-control form-control-sm" placeholder="Explication affichée après soumission">
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 btn-sm">
+            <i class="bi bi-plus me-1"></i>Ajouter la Question
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('type-select').addEventListener('change', function() {
+  const section = document.getElementById('reponses-section');
+  section.style.display = ['qcm','vf'].includes(this.value) ? '' : 'none';
+});
+</script>
+{% endblock %}

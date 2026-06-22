@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Évaluations - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold mb-0"><i class="bi bi-patch-question me-2 text-success"></i>Évaluations</h2>
+  {% if user.is_authenticated and user.role in 'enseignant,admin' %}
+  <a href="{% url 'creer_quiz' %}" class="btn btn-primary">
+    <i class="bi bi-plus-circle me-1"></i>Créer un Quiz
+  </a>
+  {% endif %}
+</div>
+
+<div class="row g-3">
+  {% for quiz in quiz_list %}
+  <div class="col-md-6 col-lg-4">
+    <div class="card surah-card h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <span class="badge {% if quiz.type_quiz == 'memorisation' %}bg-success{% elif quiz.type_quiz == 'tajweed' %}bg-info{% elif quiz.type_quiz == 'comprehension' %}bg-warning text-dark{% else %}bg-primary{% endif %}">
+            {{ quiz.get_type_quiz_display }}
+          </span>
+          <span class="badge bg-light text-success border border-success">{{ quiz.niveau.code }}</span>
+        </div>
+        <h6 class="fw-bold mb-1">{{ quiz.titre }}</h6>
+        {% if quiz.surah %}
+        <p class="text-muted small mb-1"><i class="bi bi-book me-1"></i>{{ quiz.surah.nom_translittere }}</p>
+        {% endif %}
+        {% if quiz.description %}
+        <p class="text-secondary small mb-2">{{ quiz.description|truncatewords:15 }}</p>
+        {% endif %}
+        <div class="d-flex gap-3 text-muted small mb-3">
+          <span><i class="bi bi-clock me-1"></i>{{ quiz.duree_minutes }} min</span>
+          <span><i class="bi bi-list-ol me-1"></i>{{ quiz.get_nombre_questions }} questions</span>
+          <span><i class="bi bi-award me-1"></i>{{ quiz.note_maximale }} pts</span>
+        </div>
+        <a href="{% url 'detail_quiz' quiz.pk %}" class="btn btn-sm btn-outline-success w-100">
+          <i class="bi bi-eye me-1"></i>Voir le Quiz
+        </a>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12 text-center py-5">
+    <i class="bi bi-patch-question text-muted fs-1"></i>
+    <p class="text-muted mt-3">Aucune évaluation disponible pour votre niveau.</p>
+    {% if user.is_authenticated and user.role == 'enseignant' %}
+    <a href="{% url 'creer_quiz' %}" class="btn btn-outline-success">Créer le premier quiz</a>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

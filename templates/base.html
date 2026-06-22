@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Coran Scolaire Sénégal{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-senegal: #009A44;
+      --yellow-senegal: #FDEF42;
+      --red-senegal: #E31E24;
+      --gold: #C8A54A;
+      --dark-green: #006B30;
+    }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; }
+    .navbar { background: linear-gradient(135deg, var(--dark-green), var(--green-senegal)) !important; }
+    .navbar-brand { font-weight: 700; font-size: 1.4rem; color: white !important; }
+    .navbar-brand span { color: var(--yellow-senegal); }
+    .nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 500; }
+    .nav-link:hover, .nav-link.active { color: var(--yellow-senegal) !important; }
+    .sidebar { background: white; min-height: calc(100vh - 60px); border-right: 2px solid #e9ecef; }
+    .sidebar .nav-link { color: #495057; border-radius: 8px; margin: 2px 8px; padding: 10px 16px; }
+    .sidebar .nav-link:hover { background: #f0faf5; color: var(--green-senegal); }
+    .sidebar .nav-link.active { background: var(--green-senegal); color: white !important; }
+    .sidebar .nav-link i { width: 24px; }
+    .card { border: none; box-shadow: 0 2px 12px rgba(0,0,0,0.08); border-radius: 12px; }
+    .card-header { border-radius: 12px 12px 0 0 !important; }
+    .btn-primary { background: var(--green-senegal); border-color: var(--green-senegal); }
+    .btn-primary:hover { background: var(--dark-green); border-color: var(--dark-green); }
+    .btn-outline-primary { color: var(--green-senegal); border-color: var(--green-senegal); }
+    .btn-outline-primary:hover { background: var(--green-senegal); border-color: var(--green-senegal); }
+    .badge-niveau { font-size: 0.7rem; padding: 4px 8px; border-radius: 20px; }
+    .arabic-text { font-family: 'Noto Naskh Arabic', 'Amiri', serif; font-size: 1.6rem; direction: rtl; line-height: 2.2; }
+    .arabic-text-sm { font-family: 'Noto Naskh Arabic', 'Amiri', serif; font-size: 1.2rem; direction: rtl; }
+    .transliteration { font-style: italic; color: #6c757d; font-size: 0.9rem; }
+    .surah-card:hover { transform: translateY(-2px); transition: transform 0.2s; }
+    .progress-bar { background: var(--green-senegal); }
+    .stat-card { border-left: 4px solid var(--green-senegal); }
+    .breadcrumb-item + .breadcrumb-item::before { color: var(--green-senegal); }
+    footer { background: var(--dark-green); color: white; }
+    .alert-quran { background: linear-gradient(135deg, #f0faf5, #e8f5f0); border-left: 4px solid var(--green-senegal); }
+    @media (max-width: 768px) { .sidebar { min-height: auto; } }
+  </style>
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="{% url 'accueil' %}">
+      <i class="bi bi-book-half me-2"></i>Coran<span>Sénégal</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'liste_sourates' %}"><i class="bi bi-book me-1"></i>Coran</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'liste_niveaux' %}"><i class="bi bi-mortarboard me-1"></i>Curriculum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'liste_quiz' %}"><i class="bi bi-patch-question me-1"></i>Évaluations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'glossaire' %}"><i class="bi bi-journal-text me-1"></i>Glossaire</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle me-1"></i>{{ user.get_full_name|default:user.username }}
+            <span class="badge bg-warning text-dark ms-1" style="font-size:0.65rem;">{{ user.get_role_display }}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="{% url 'tableau_de_bord' %}"><i class="bi bi-speedometer2 me-2"></i>Tableau de bord</a></li>
+            <li><a class="dropdown-item" href="{% url 'profil' %}"><i class="bi bi-person me-2"></i>Mon Profil</a></li>
+            {% if user.role == 'eleve' %}
+            <li><a class="dropdown-item" href="{% url 'ma_progression' %}"><i class="bi bi-graph-up me-2"></i>Ma Progression</a></li>
+            {% endif %}
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="{% url 'deconnexion' %}"><i class="bi bi-box-arrow-right me-2"></i>Déconnexion</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link btn btn-outline-light btn-sm px-3" href="{% url 'connexion' %}">
+            <i class="bi bi-box-arrow-in-right me-1"></i>Connexion
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% if messages %}
+<div class="container-fluid px-4 mt-2">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<main class="{% block main_class %}container-fluid px-4 py-4{% endblock %}">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="py-4 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h6 class="fw-bold"><i class="bi bi-book-half me-2"></i>Coran Sénégal</h6>
+        <p class="text-white-50 small">Intégration du Saint Coran dans l'enseignement primaire et secondaire au Sénégal.</p>
+      </div>
+      <div class="col-md-4">
+        <h6 class="fw-bold">Liens Rapides</h6>
+        <ul class="list-unstyled text-white-50 small">
+          <li><a href="{% url 'liste_sourates' %}" class="text-white-50">Sourates</a></li>
+          <li><a href="{% url 'liste_niveaux' %}" class="text-white-50">Curriculum par Niveau</a></li>
+          <li><a href="{% url 'tajweed_list' %}" class="text-white-50">Règles de Tajweed</a></li>
+          <li><a href="/api/docs/" class="text-white-50">Documentation API</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <p class="text-white-50 small">
+          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        </p>
+        <p class="text-white-50 small">© 2024-2025 Coran Sénégal - MEN Sénégal</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

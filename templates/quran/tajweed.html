@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Règles de Tajweed - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold mb-0"><i class="bi bi-music-note-list me-2 text-success"></i>Règles de Tajweed</h2>
+</div>
+
+<div class="alert alert-quran mb-4">
+  <i class="bi bi-info-circle me-2 text-success"></i>
+  Le <strong>Tajweed</strong> est la science de la récitation correcte du Coran. Ces règles garantissent la bonne prononciation des lettres arabes et la beauté de la récitation.
+</div>
+
+{% regroup regles by get_categorie_display as regles_par_categorie %}
+
+{% for categorie_group in regles_par_categorie %}
+<div class="card mb-4">
+  <div class="card-header bg-success text-white fw-bold">
+    <i class="bi bi-bookmark-fill me-2"></i>{{ categorie_group.grouper }}
+  </div>
+  <div class="card-body">
+    <div class="row g-3">
+      {% for regle in categorie_group.list %}
+      <div class="col-md-6">
+        <div class="p-3 border rounded h-100">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <h6 class="fw-bold mb-0">{{ regle.nom }}</h6>
+            {% if regle.niveau_scolaire %}
+            <span class="badge bg-success badge-niveau">{{ regle.niveau_scolaire }}</span>
+            {% endif %}
+          </div>
+          {% if regle.exemple_arabe %}
+          <p class="arabic-text-sm text-success mb-2">{{ regle.exemple_arabe }}</p>
+          {% endif %}
+          <p class="text-secondary small mb-0">{{ regle.description_fr }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% empty %}
+<div class="text-center py-5">
+  <i class="bi bi-music-note text-muted fs-1"></i>
+  <p class="text-muted mt-3">Les règles de Tajweed n'ont pas encore été saisies.</p>
+  {% if user.is_staff %}
+  <a href="/admin/quran/tajweed/add/" class="btn btn-outline-success">
+    <i class="bi bi-plus-circle me-1"></i>Ajouter une règle
+  </a>
+  {% endif %}
+</div>
+{% endfor %}
+{% endblock %}

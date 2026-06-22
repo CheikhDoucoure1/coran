@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}{{ plan.titre }} - Plan de Leçon{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'liste_plans_lecon' %}">Plans de Leçons</a></li>
+    <li class="breadcrumb-item active">{{ plan.titre }}</li>
+  </ol>
+</nav>
+
+<div class="row g-4">
+  <div class="col-md-8">
+    <div class="card mb-4">
+      <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-journal-richtext me-2"></i>{{ plan.titre }}</span>
+        <span class="badge bg-warning text-dark">{{ plan.get_statut_display }}</span>
+      </div>
+      <div class="card-body">
+        {% if plan.objectifs %}
+        <h6 class="fw-bold text-success"><i class="bi bi-bullseye me-2"></i>Objectifs</h6>
+        <p class="mb-4">{{ plan.objectifs }}</p>
+        {% endif %}
+
+        {% if plan.prerequis %}
+        <h6 class="fw-bold text-success"><i class="bi bi-check-circle me-2"></i>Prérequis</h6>
+        <p class="mb-4">{{ plan.prerequis }}</p>
+        {% endif %}
+
+        <h6 class="fw-bold text-success"><i class="bi bi-list-ol me-2"></i>Déroulement de la Séance</h6>
+        <div class="p-3 rounded" style="background:#f8f9fa; white-space: pre-line;">{{ plan.deroulement }}</div>
+
+        {% if plan.activites_eleves %}
+        <h6 class="fw-bold text-success mt-4"><i class="bi bi-people me-2"></i>Activités des Élèves</h6>
+        <p class="mb-0">{{ plan.activites_eleves }}</p>
+        {% endif %}
+
+        {% if plan.evaluation %}
+        <h6 class="fw-bold text-success mt-4"><i class="bi bi-patch-check me-2"></i>Évaluation</h6>
+        <p class="mb-0">{{ plan.evaluation }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-header fw-bold"><i class="bi bi-info-circle me-2"></i>Informations</div>
+      <div class="card-body">
+        <dl class="mb-0">
+          <dt class="text-muted small">Niveau</dt>
+          <dd>{{ plan.niveau.nom }}</dd>
+          <dt class="text-muted small">Sourate</dt>
+          <dd><a href="{% url 'detail_sourate' plan.surah.numero %}" class="text-success">{{ plan.surah.nom_translittere }}</a></dd>
+          <dt class="text-muted small">Durée</dt>
+          <dd>{{ plan.duree_minutes }} minutes</dd>
+          <dt class="text-muted small">Auteur</dt>
+          <dd>{{ plan.auteur.get_full_name|default:plan.auteur.username }}</dd>
+          <dt class="text-muted small">Créé le</dt>
+          <dd>{{ plan.date_creation|date:"d/m/Y" }}</dd>
+        </dl>
+      </div>
+    </div>
+
+    {% if plan.materiel_requis %}
+    <div class="card mb-3">
+      <div class="card-header fw-bold"><i class="bi bi-tools me-2"></i>Matériel Requis</div>
+      <div class="card-body">{{ plan.materiel_requis }}</div>
+    </div>
+    {% endif %}
+
+    {% if plan.ressources.all %}
+    <div class="card">
+      <div class="card-header fw-bold"><i class="bi bi-paperclip me-2"></i>Ressources</div>
+      <ul class="list-group list-group-flush">
+        {% for ressource in plan.ressources.all %}
+        <li class="list-group-item d-flex align-items-center gap-2">
+          <i class="bi bi-{% if ressource.type_ressource == 'audio' %}volume-up{% elif ressource.type_ressource == 'pdf' %}file-pdf{% elif ressource.type_ressource == 'video' %}play-circle{% else %}link{% endif %} text-success"></i>
+          {% if ressource.url_externe %}<a href="{{ ressource.url_externe }}" target="_blank">{% else %}<span>{% endif %}
+            {{ ressource.titre }}
+          {% if ressource.url_externe %}</a>{% else %}</span>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

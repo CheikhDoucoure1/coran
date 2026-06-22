@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}Ma Progression - Coran Sénégal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold mb-0"><i class="bi bi-graph-up me-2 text-success"></i>Ma Progression</h2>
+</div>
+
+<!-- Progression globale -->
+<div class="card mb-4" style="background: linear-gradient(135deg, #006B30, #009A44); color: white;">
+  <div class="card-body py-4">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h4 class="fw-bold">Progression Globale</h4>
+        <p class="mb-2 opacity-75">{{ versets_memorises }} / {{ total_versets }} versets mémorisés</p>
+        <div class="progress" style="height: 12px; background: rgba(255,255,255,0.3);">
+          <div class="progress-bar bg-warning" style="width: {{ pourcentage_global }}%;"></div>
+        </div>
+        <p class="mt-2 fw-bold fs-4">{{ pourcentage_global }}%</p>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <div class="arabic-text" style="font-size: 1.8rem; color: #FDEF42;">وَمَن يَتَّقِ اللَّهَ</div>
+        <div class="small opacity-75">Quiconque craint Allah...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tableau de progression -->
+<div class="card">
+  <div class="card-header"><i class="bi bi-list-check me-2"></i>Détail par Sourate</div>
+  <div class="table-responsive">
+    <table class="table table-hover mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Sourate</th>
+          <th>Versets mémorisés</th>
+          <th>Progression</th>
+          <th>Statut</th>
+          <th>Note</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for prog in progressions %}
+        <tr>
+          <td class="text-muted">{{ prog.surah.numero }}</td>
+          <td>
+            <div class="fw-semibold">{{ prog.surah.nom_translittere }}</div>
+            <small class="text-muted arabic-text-sm">{{ prog.surah.nom_arabe }}</small>
+          </td>
+          <td>{{ prog.versets_memorises }} / {{ prog.surah.nombre_versets }}</td>
+          <td style="min-width: 120px;">
+            <div class="progress" style="height: 8px;">
+              <div class="progress-bar" style="width: {{ prog.pourcentage }}%"></div>
+            </div>
+            <small class="text-muted">{{ prog.pourcentage }}%</small>
+          </td>
+          <td>
+            <span class="badge {% if prog.statut == 'maitrise' %}bg-success{% elif prog.statut == 'memorise' %}bg-warning text-dark{% elif prog.statut == 'en_cours' %}bg-info{% else %}bg-secondary{% endif %}">
+              {{ prog.get_statut_display }}
+            </span>
+          </td>
+          <td>
+            {% if prog.note_recitation %}
+            <strong>{{ prog.note_recitation }}/20</strong>
+            {% else %}—{% endif %}
+          </td>
+          <td>
+            <a href="{% url 'detail_sourate' prog.surah.numero %}" class="btn btn-sm btn-outline-success">
+              <i class="bi bi-book"></i>
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="7" class="text-center text-muted py-5">
+          <i class="bi bi-book fs-1 d-block mb-2"></i>
+          Aucune progression enregistrée. <a href="{% url 'liste_sourates' %}">Commencez par explorer le Coran.</a>
+        </td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
