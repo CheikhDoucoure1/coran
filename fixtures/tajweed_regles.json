@@ -1,0 +1,365 @@
+[
+  {
+    "model": "quran.tajweed",
+    "pk": 1,
+    "fields": {
+      "nom": "Al-Jawf — La Cavité Buccale",
+      "categorie": "makhraj",
+      "description_fr": "Point d'articulation situé dans la cavité buccale et la gorge. Les lettres de prolongation (حروف المد) ا، و، ي en sont issues. Ces lettres n'ont pas de point précis de contact : leur son émerge librement de la bouche.",
+      "exemple_arabe": "اَلْجَوْفُ ◌ا ◌وْ ◌يْ",
+      "niveau_scolaire": "CE1"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 2,
+    "fields": {
+      "nom": "Al-Halq (Fond de gorge) — ء ه",
+      "categorie": "makhraj",
+      "description_fr": "Tiers supérieur de la gorge (extrémité). Les lettres Hamza (ء) et Hâ' (ه) s'articulent au fond de la gorge, près de la luette. Le souffle y est fortement émis.",
+      "exemple_arabe": "أَهْلٌ ـ هَمْزَةٌ",
+      "niveau_scolaire": "CE1"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 3,
+    "fields": {
+      "nom": "Al-Halq (Milieu de gorge) — ع ح",
+      "categorie": "makhraj",
+      "description_fr": "Tiers médian de la gorge. Les lettres 'Ayn (ع) et Hâ' (ح) s'y articulent. La friction est produite en milieu de gorge avec compression de l'air.",
+      "exemple_arabe": "عَيْنٌ ـ حَرْفٌ",
+      "niveau_scolaire": "CE2"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 4,
+    "fields": {
+      "nom": "Al-Halq (Début de gorge) — خ غ",
+      "categorie": "makhraj",
+      "description_fr": "Tiers inférieur (début) de la gorge. Les lettres Khâ' (خ) et Ghayn (غ) s'articulent en avant de la gorge, derrière la langue. Elles produisent un son guttural distinct.",
+      "exemple_arabe": "خَبَرٌ ـ غَيْبٌ",
+      "niveau_scolaire": "CE2"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 5,
+    "fields": {
+      "nom": "Al-Lisan — Zone centrale",
+      "categorie": "makhraj",
+      "description_fr": "La langue est le point d'articulation le plus riche. Elle produit les lettres ق، ك، ج، ش، ي، ض، ل، ن، ر، ط، د، ت، ص، ز، س، ظ، ذ، ث selon sa position (arrière, centre, bord, pointe).",
+      "exemple_arabe": "قَلَمٌ ـ كِتَابٌ",
+      "niveau_scolaire": "CM1"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 6,
+    "fields": {
+      "nom": "Ash-Shafatân — Les Deux Lèvres",
+      "categorie": "makhraj",
+      "description_fr": "Les deux lèvres constituent le point d'articulation des lettres ب (occlusion complète), م (occlusion avec nasalisation) et و (lèvres arrondies sans contact), ainsi que ف (lèvre inférieure + dents supérieures).",
+      "exemple_arabe": "بَسْمَلَةٌ ـ فَاتِحَةٌ",
+      "niveau_scolaire": "CP"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 7,
+    "fields": {
+      "nom": "Al-Khayshûm — Les Fosses Nasales",
+      "categorie": "makhraj",
+      "description_fr": "La cavité nasale produit la Ghunna (الغنة), la nasalisation qui accompagne les lettres م et ن lorsqu'elles portent un tashdîd ou sont au repos (sâkin). La durée est de 2 temps (harakat).",
+      "exemple_arabe": "مِنَّا ـ إِنَّ",
+      "niveau_scolaire": "CM1"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 8,
+    "fields": {
+      "nom": "Al-Jahr — Sonorité",
+      "categorie": "sifat",
+      "description_fr": "Caractéristique des lettres dont la voix est pleine et les cordes vocales vibrent lors de la prononciation. L'air est retenu et la résonance est forte. Exemple de lettres : ع ز ي ر ل م و ب غ ق ج د ذ ض ظ ن.",
+      "exemple_arabe": "عَزِيزٌ ـ رَبٌّ",
+      "niveau_scolaire": "CM2"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 9,
+    "fields": {
+      "nom": "Al-Hams — Chuchotement",
+      "categorie": "sifat",
+      "description_fr": "Lettres dont la prononciation est accompagnée d'un souffle audible, les cordes vocales ne vibrant pas complètement. Lettres : ف ح ث هـ ش خ ص س ك ت. Moyen mnémotechnique : فَحَثَّهُ شَخْصٌ سَكَتَ.",
+      "exemple_arabe": "فَحَثَّهُ شَخْصٌ سَكَتَ",
+      "niveau_scolaire": "CM2"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 10,
+    "fields": {
+      "nom": "Al-Qalqala — Vibration",
+      "categorie": "sifat",
+      "description_fr": "Légère vibration ou rebond produit après la prononciation d'une lettre sâkina (au repos). S'applique aux 5 lettres : ق ط ب ج د. La Qalqala est Sughrâ (mineure) au milieu du mot et Kubrâ (majeure) en fin de récitation.",
+      "exemple_arabe": "قُطْبُ جَدٍّ",
+      "niveau_scolaire": "CM1"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 11,
+    "fields": {
+      "nom": "Al-Isti'lâ — Élévation (lettres épaisses)",
+      "categorie": "sifat",
+      "description_fr": "Sept lettres dites 'épaisses' ou 'emphatiques' dont la langue s'élève vers le palais lors de la prononciation, donnant un son grave : خ ص ض غ ط ق ظ. Moyen mnémotechnique : خُصَّ ضَغْطٍ قِظْ.",
+      "exemple_arabe": "خُصَّ ضَغْطٍ قِظْ",
+      "niveau_scolaire": "6eme"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 12,
+    "fields": {
+      "nom": "Al-Istifâl — Abaissement (lettres fines)",
+      "categorie": "sifat",
+      "description_fr": "Toutes les lettres arabes hormis les sept lettres d'Isti'lâ sont fines (muraqqaq). La langue reste basse lors de leur prononciation. Le son est aigu et léger.",
+      "exemple_arabe": "سَلَامٌ ـ نُورٌ",
+      "niveau_scolaire": "6eme"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 13,
+    "fields": {
+      "nom": "Al-Ghunna — Nasalisation",
+      "categorie": "sifat",
+      "description_fr": "Son nasal caractéristique des lettres م et ن lorsqu'elles sont au repos (sâkin) ou portent un tashdîd. La Ghunna dure 2 harakat (unités de temps) et sort uniquement par les fosses nasales.",
+      "exemple_arabe": "إِنَّمَا ـ مِنَّا",
+      "niveau_scolaire": "CM1"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 14,
+    "fields": {
+      "nom": "At-Tafkhîm — Emphase",
+      "categorie": "sifat",
+      "description_fr": "Épaississement du son de certaines lettres : obligatoire pour les 7 lettres d'élévation (Isti'lâ), et conditionnel pour la lettre ر et le nom ماجستير الله selon leur contexte vowel.",
+      "exemple_arabe": "اللهُ ـ الرَّحْمَنُ",
+      "niveau_scolaire": "6eme"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 15,
+    "fields": {
+      "nom": "Al-Madd At-Tabî'i — Prolongation naturelle",
+      "categorie": "madd",
+      "description_fr": "Prolongation de base de 2 harakat (temps). Elle se produit lorsqu'une lettre de madd (ا، و، ي) n'est suivie ni d'une Hamza ni d'un sukûn. C'est la prolongation minimale, présente dans toute la récitation.",
+      "exemple_arabe": "قَالَ ـ يَقُولُ ـ قِيلَ",
+      "niveau_scolaire": "CE2"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 16,
+    "fields": {
+      "nom": "Al-Madd Al-Muttasil — Prolongation connexe",
+      "categorie": "madd",
+      "description_fr": "Lettre de prolongation suivie d'une Hamza dans le MÊME mot. La prolongation est obligatoire : 4 ou 5 harakat en lecture continue, et peut aller jusqu'à 6 à l'arrêt. Exemple : جَاءَ، سَاءَ، جِيءَ.",
+      "exemple_arabe": "جَاءَ ـ سَاءَ ـ سُوءٌ",
+      "niveau_scolaire": "CM1"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 17,
+    "fields": {
+      "nom": "Al-Madd Al-Munfasil — Prolongation séparée",
+      "categorie": "madd",
+      "description_fr": "Lettre de prolongation en fin de mot suivie d'une Hamza au début du mot SUIVANT. Sa durée est de 2 à 5 harakat selon l'école de lecture (riwaya). Exemple : إِنَّا أَعْطَيْنَاكَ.",
+      "exemple_arabe": "إِنَّا أَعْطَيْنَاكَ",
+      "niveau_scolaire": "CM2"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 18,
+    "fields": {
+      "nom": "Al-Madd Al-Lâzim — Prolongation indispensable",
+      "categorie": "madd",
+      "description_fr": "Prolongation de 6 harakat, obligatoire. Elle se produit lorsqu'une lettre de prolongation est suivie d'un sukûn permanent (dans le mot) ou d'un tashdîd. On la trouve notamment dans les lettres d'ouverture des sourates (حروف المقطعة).",
+      "exemple_arabe": "الٓمٓ ـ الٓرٰ",
+      "niveau_scolaire": "3eme"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 19,
+    "fields": {
+      "nom": "Al-Madd Al-'Arid Lissukûn — Prolongation de pause",
+      "categorie": "madd",
+      "description_fr": "Prolongation qui survient lorsqu'on s'arrête (waqf) sur un mot dont la dernière lettre est précédée d'une lettre de prolongation. Sa durée est de 2, 4 ou 6 harakat selon la préférence du lecteur.",
+      "exemple_arabe": "الرَّحِيمِ ـ نَسْتَعِينُ",
+      "niveau_scolaire": "CM2"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 20,
+    "fields": {
+      "nom": "Al-Madd Al-Lîn — Prolongation douce",
+      "categorie": "madd",
+      "description_fr": "Prolongation produite à l'arrêt sur un mot dont la dernière lettre est précédée d'un و ou ي sâkin précédé d'une lettre avec fatha. Sa durée est de 2 à 6 harakat.",
+      "exemple_arabe": "خَوْفٌ ـ بَيْتٌ",
+      "niveau_scolaire": "CM2"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 21,
+    "fields": {
+      "nom": "Idghâm bi Ghunna — Assimilation avec nasalisation",
+      "categorie": "idgham",
+      "description_fr": "Lorsque le Nûn sâkin ou le Tanwîn est suivi des lettres ي ن م و (regroupées dans يَنْمُو), la lettre est assimilée dans la suivante avec une Ghunna de 2 harakat. La lettre ن disparaît et se fond dans la lettre suivante.",
+      "exemple_arabe": "مَنْ يَقُولُ ـ يَوْمَئِذٍ وُجُوهٌ",
+      "niveau_scolaire": "CM2"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 22,
+    "fields": {
+      "nom": "Idghâm bilâ Ghunna — Assimilation sans nasalisation",
+      "categorie": "idgham",
+      "description_fr": "Lorsque le Nûn sâkin ou le Tanwîn est suivi de ل ou ر, la lettre est assimilée sans nasalisation. Le ن disparaît totalement dans la lettre suivante.",
+      "exemple_arabe": "مِنْ رَبِّهِمْ ـ هُدًى لِلْمُتَّقِينَ",
+      "niveau_scolaire": "CM2"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 23,
+    "fields": {
+      "nom": "Idghâm Ash-Shafawi — Assimilation labiale",
+      "categorie": "idgham",
+      "description_fr": "Lorsque le Mîm sâkin (مْ) est suivi d'un autre Mîm (م), les deux se fusionnent avec une Ghunna de 2 harakat. La première mîm est absorbée par la seconde.",
+      "exemple_arabe": "لَهُمْ مَا",
+      "niveau_scolaire": "CM1"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 24,
+    "fields": {
+      "nom": "Idghâm Al-Mutajânisayn — Assimilation des similaires",
+      "categorie": "idgham",
+      "description_fr": "Assimilation de deux lettres différentes mais de même point d'articulation (makhraj). Exemples classiques : ت sâkin + ط ou د, et ذ sâkin + ظ.",
+      "exemple_arabe": "قَدْ تَبَيَّنَ ـ إِذْ ظَلَمُوا",
+      "niveau_scolaire": "3eme"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 25,
+    "fields": {
+      "nom": "Al-Ikhfâ Al-Haqîqi — Occultation vraie",
+      "categorie": "ikhfa",
+      "description_fr": "Lorsque le Nûn sâkin ou le Tanwîn est suivi de l'une des 15 lettres d'Ikhfâ (tout sauf les lettres de Idghâm, Iqlab et Izhâr), la lettre ن est prononcée de façon intermédiaire entre l'Izhâr et l'Idghâm, avec une Ghunna de 2 harakat. Lettres : ص ذ ث ك ج ش ق س د ط ز ف ت ض ظ.",
+      "exemple_arabe": "مَنْ كَانَ ـ أَنْدَادًا",
+      "niveau_scolaire": "CM2"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 26,
+    "fields": {
+      "nom": "Al-Ikhfâ Ash-Shafawi — Occultation labiale",
+      "categorie": "ikhfa",
+      "description_fr": "Lorsque le Mîm sâkin (مْ) est suivi de ب, la lettre م est prononcée de façon dissimulée avec Ghunna de 2 harakat. Les lèvres restent légèrement ouvertes, sans fermeture complète.",
+      "exemple_arabe": "تَرْمِيهِمْ بِحِجَارَةٍ",
+      "niveau_scolaire": "CM1"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 27,
+    "fields": {
+      "nom": "Al-Izhâr Al-Halqi — Manifestation gutturale",
+      "categorie": "ikhfa",
+      "description_fr": "Lorsque le Nûn sâkin ou le Tanwîn est suivi de l'une des 6 lettres gutturales (ء ه ع ح خ غ), le ن est prononcé clairement sans nasalisation ni assimilation.",
+      "exemple_arabe": "مَنْ آمَنَ ـ عَلِيمٌ حَكِيمٌ",
+      "niveau_scolaire": "CM1"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 28,
+    "fields": {
+      "nom": "Al-Iqlab — Substitution du Nûn en Mîm",
+      "categorie": "iqlab",
+      "description_fr": "Lorsque le Nûn sâkin (نْ) ou le Tanwîn est suivi de ب, le ن se transforme en م avec une Ghunna de 2 harakat et une légère occlusion des lèvres. C'est la seule lettre qui provoque l'Iqlab.",
+      "exemple_arabe": "مِنْ بَعْدِ ـ سَمِيعٌ بَصِيرٌ",
+      "niveau_scolaire": "CM1"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 29,
+    "fields": {
+      "nom": "Al-Waqf At-Tâm — Arrêt complet",
+      "categorie": "waqf",
+      "description_fr": "Arrêt sur un mot où le sens est totalement terminé, sans lien grammatical avec la suite. C'est l'arrêt le plus recommandé. Le lecteur peut reprendre à partir du mot suivant sans affecter le sens.",
+      "exemple_arabe": "◌ۙ ـ وَقْفٌ تَامٌّ",
+      "niveau_scolaire": "6eme"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 30,
+    "fields": {
+      "nom": "Al-Waqf Al-Kâfi — Arrêt suffisant",
+      "categorie": "waqf",
+      "description_fr": "Arrêt sur un mot où le sens est bien terminé mais il existe un lien avec ce qui suit. L'arrêt est permis et il est préférable de reprendre depuis ce point.",
+      "exemple_arabe": "◌ۚ ـ وَقْفٌ كَافٍ",
+      "niveau_scolaire": "6eme"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 31,
+    "fields": {
+      "nom": "Al-Waqf Al-Hasan — Arrêt acceptable",
+      "categorie": "waqf",
+      "description_fr": "Arrêt sur un mot où le sens est suffisant mais le lien avec la suite est plus fort. L'arrêt est possible si nécessaire, mais il est préférable de continuer.",
+      "exemple_arabe": "◌ۛ ـ وَقْفٌ حَسَنٌ",
+      "niveau_scolaire": "5eme"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 32,
+    "fields": {
+      "nom": "Al-Waqf Al-Qabîh — Arrêt déconseillé",
+      "categorie": "waqf",
+      "description_fr": "Arrêt en un point où le sens est incomplet ou déformé par la coupure. Cet arrêt est fortement déconseillé. Si l'on s'y arrête par nécessité, on doit reprendre au moins depuis le début du verset.",
+      "exemple_arabe": "◌ۜ ـ وَقْفٌ قَبِيحٌ",
+      "niveau_scolaire": "5eme"
+    }
+  },
+  {
+    "model": "quran.tajweed",
+    "pk": 33,
+    "fields": {
+      "nom": "Al-Waqf 'Alâ Hâ' At-Ta'nîth — Arrêt sur le Tâ' marbûta",
+      "categorie": "waqf",
+      "description_fr": "Lorsqu'on s'arrête sur un mot se terminant par Tâ' marbûta (ة), elle se prononce comme un Hâ' (ه) sâkin. En lecture continue, elle conserve sa prononciation de Tâ' (ت).",
+      "exemple_arabe": "رَحْمَةً ـ نِعْمَةً",
+      "niveau_scolaire": "CM2"
+    }
+  }
+]

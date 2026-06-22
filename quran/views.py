@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .models import Surah, Verset, GlossaireIslamique, Tajweed
 
@@ -67,11 +66,39 @@ def glossaire(request):
     return render(request, 'quran/glossaire.html', {'termes': termes, 'query': q})
 
 
-@login_required
 def tajweed_list(request):
+    categorie_filtre = request.GET.get('categorie', '')
+    q = request.GET.get('q', '')
+
     regles = Tajweed.objects.all().order_by('categorie', 'nom')
-    categories = Tajweed.objects.values_list('categorie', flat=True).distinct()
+    if categorie_filtre:
+        regles = regles.filter(categorie=categorie_filtre)
+    if q:
+        regles = regles.filter(
+            Q(nom__icontains=q) |
+            Q(description_fr__icontains=q) |
+            Q(exemple_arabe__icontains=q)
+        )
+
+    CATEGORIES_META = {
+        'makhraj': {'label': "Makhraj — Points d'articulation", 'couleur': 'success',   'icone': 'bi-soundwave'},
+        'sifat':   {'label': 'Sifat — Caractéristiques',        'couleur': 'primary',   'icone': 'bi-stars'},
+        'madd':    {'label': 'Madd — Prolongations',            'couleur': 'warning',   'icone': 'bi-arrows-expand'},
+        'idgham':  {'label': 'Idghâm — Assimilation',           'couleur': 'info',      'icone': 'bi-link-45deg'},
+        'ikhfa':   {'label': 'Ikhfâ — Occultation',             'couleur': 'secondary', 'icone': 'bi-eye-slash'},
+        'iqlab':   {'label': 'Iqlab — Substitution',            'couleur': 'danger',    'icone': 'bi-arrow-left-right'},
+        'waqf':    {'label': 'Waqf — Arrêts',                   'couleur': 'dark',      'icone': 'bi-pause-circle'},
+    }
+    toutes_categories = [
+        {'key': k, **v, 'count': Tajweed.objects.filter(categorie=k).count()}
+        for k, v in CATEGORIES_META.items()
+    ]
+
     return render(request, 'quran/tajweed.html', {
         'regles': regles,
-        'categories': categories,
+        'toutes_categories': toutes_categories,
+        'categorie_filtre': categorie_filtre,
+        'categories_meta': CATEGORIES_META,
+        'query': q,
+        'total': Tajweed.objects.count(),
     })

@@ -2,52 +2,193 @@
 {% block title %}Règles de Tajweed - Coran Sénégal{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <h2 class="fw-bold mb-0"><i class="bi bi-music-note-list me-2 text-success"></i>Règles de Tajweed</h2>
-</div>
 
-<div class="alert alert-quran mb-4">
-  <i class="bi bi-info-circle me-2 text-success"></i>
-  Le <strong>Tajweed</strong> est la science de la récitation correcte du Coran. Ces règles garantissent la bonne prononciation des lettres arabes et la beauté de la récitation.
-</div>
-
-{% regroup regles by get_categorie_display as regles_par_categorie %}
-
-{% for categorie_group in regles_par_categorie %}
-<div class="card mb-4">
-  <div class="card-header bg-success text-white fw-bold">
-    <i class="bi bi-bookmark-fill me-2"></i>{{ categorie_group.grouper }}
+<!-- En-tête -->
+<div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+  <div>
+    <h2 class="fw-bold mb-1"><i class="bi bi-music-note-list me-2 text-success"></i>Règles de Tajweed</h2>
+    <p class="text-muted mb-0">Science de la récitation correcte du Coran — <strong>{{ total }} règles</strong></p>
   </div>
-  <div class="card-body">
+  {% if user.is_staff %}
+  <a href="/admin/quran/tajweed/add/" class="btn btn-outline-success btn-sm">
+    <i class="bi bi-plus-circle me-1"></i>Ajouter une règle
+  </a>
+  {% endif %}
+</div>
+
+<!-- Bandeau intro -->
+<div class="alert alert-quran mb-4">
+  <div class="arabic-text-sm text-success text-end mb-1">تَجْوِيدُ الْقُرْآنِ الْكَرِيمِ</div>
+  <i class="bi bi-info-circle me-2 text-success"></i>
+  Le <strong>Tajweed</strong> (تجويد) désigne l'ensemble des règles qui régissent la récitation du Coran. Maîtriser ces règles permet de prononcer chaque lettre depuis son point exact d'articulation (makhraj) et avec ses caractéristiques propres (sifat).
+</div>
+
+<!-- Barre de recherche + filtres catégorie -->
+<div class="card mb-4">
+  <div class="card-body py-3">
+    <form method="get" class="row g-2 align-items-end">
+      <div class="col-md-5">
+        <label class="form-label small fw-semibold mb-1">Rechercher une règle</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-search text-success"></i></span>
+          <input type="text" name="q" class="form-control" placeholder="Nom, description, exemple arabe…" value="{{ query }}">
+        </div>
+      </div>
+      <div class="col-md-5">
+        <label class="form-label small fw-semibold mb-1">Filtrer par catégorie</label>
+        <select name="categorie" class="form-select" onchange="this.form.submit()">
+          <option value="">— Toutes les catégories —</option>
+          {% for cat in toutes_categories %}
+          <option value="{{ cat.key }}" {% if categorie_filtre == cat.key %}selected{% endif %}>
+            {{ cat.label }} ({{ cat.count }})
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2 d-flex gap-2">
+        <button type="submit" class="btn btn-primary flex-fill">Filtrer</button>
+        {% if query or categorie_filtre %}
+        <a href="{% url 'tajweed_list' %}" class="btn btn-outline-secondary" title="Réinitialiser"><i class="bi bi-x-lg"></i></a>
+        {% endif %}
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Onglets de catégorie (raccourcis visuels) -->
+<div class="d-flex flex-wrap gap-2 mb-4">
+  <a href="{% url 'tajweed_list' %}"
+     class="btn btn-sm {% if not categorie_filtre %}btn-success{% else %}btn-outline-success{% endif %}">
+    Toutes ({{ total }})
+  </a>
+  {% for cat in toutes_categories %}
+  <a href="?categorie={{ cat.key }}"
+     class="btn btn-sm {% if categorie_filtre == cat.key %}btn-{{ cat.couleur }}{% else %}btn-outline-{{ cat.couleur }}{% endif %}">
+    <i class="bi {{ cat.icone }} me-1"></i>{{ cat.key|title }} ({{ cat.count }})
+  </a>
+  {% endfor %}
+</div>
+
+<!-- Résultats -->
+{% if regles %}
+  {% regroup regles by categorie as regles_par_categorie %}
+  {% for groupe in regles_par_categorie %}
+
+  {% with meta=categories_meta|default_if_none:'' %}
+  {% with cat_key=groupe.grouper %}
+
+  <div class="mb-5">
+    <!-- En-tête de catégorie -->
+    {% if cat_key == 'makhraj' %}
+      <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom border-success">
+        <span class="badge bg-success fs-6 px-3 py-2"><i class="bi bi-soundwave me-1"></i>Makhraj</span>
+        <span class="text-muted">— Points d'articulation</span>
+        <span class="ms-auto badge bg-success-subtle text-success border border-success">{{ groupe.list|length }} règle(s)</span>
+      </div>
+    {% elif cat_key == 'sifat' %}
+      <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom border-primary">
+        <span class="badge bg-primary fs-6 px-3 py-2"><i class="bi bi-stars me-1"></i>Sifat</span>
+        <span class="text-muted">— Caractéristiques des lettres</span>
+        <span class="ms-auto badge bg-primary-subtle text-primary border border-primary">{{ groupe.list|length }} règle(s)</span>
+      </div>
+    {% elif cat_key == 'madd' %}
+      <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom border-warning">
+        <span class="badge bg-warning text-dark fs-6 px-3 py-2"><i class="bi bi-arrows-expand me-1"></i>Madd</span>
+        <span class="text-muted">— Prolongations</span>
+        <span class="ms-auto badge bg-warning-subtle text-warning border border-warning">{{ groupe.list|length }} règle(s)</span>
+      </div>
+    {% elif cat_key == 'idgham' %}
+      <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom border-info">
+        <span class="badge bg-info text-dark fs-6 px-3 py-2"><i class="bi bi-link-45deg me-1"></i>Idghâm</span>
+        <span class="text-muted">— Assimilation</span>
+        <span class="ms-auto badge bg-info-subtle text-info border border-info">{{ groupe.list|length }} règle(s)</span>
+      </div>
+    {% elif cat_key == 'ikhfa' %}
+      <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom border-secondary">
+        <span class="badge bg-secondary fs-6 px-3 py-2"><i class="bi bi-eye-slash me-1"></i>Ikhfâ</span>
+        <span class="text-muted">— Occultation</span>
+        <span class="ms-auto badge bg-secondary-subtle text-secondary border border-secondary">{{ groupe.list|length }} règle(s)</span>
+      </div>
+    {% elif cat_key == 'iqlab' %}
+      <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom border-danger">
+        <span class="badge bg-danger fs-6 px-3 py-2"><i class="bi bi-arrow-left-right me-1"></i>Iqlab</span>
+        <span class="text-muted">— Substitution</span>
+        <span class="ms-auto badge bg-danger-subtle text-danger border border-danger">{{ groupe.list|length }} règle(s)</span>
+      </div>
+    {% elif cat_key == 'waqf' %}
+      <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom border-dark">
+        <span class="badge bg-dark fs-6 px-3 py-2"><i class="bi bi-pause-circle me-1"></i>Waqf</span>
+        <span class="text-muted">— Règles d'arrêt</span>
+        <span class="ms-auto badge bg-dark-subtle text-dark border border-dark">{{ groupe.list|length }} règle(s)</span>
+      </div>
+    {% endif %}
+
+    <!-- Cartes des règles -->
     <div class="row g-3">
-      {% for regle in categorie_group.list %}
-      <div class="col-md-6">
-        <div class="p-3 border rounded h-100">
-          <div class="d-flex justify-content-between align-items-start mb-2">
-            <h6 class="fw-bold mb-0">{{ regle.nom }}</h6>
-            {% if regle.niveau_scolaire %}
-            <span class="badge bg-success badge-niveau">{{ regle.niveau_scolaire }}</span>
+      {% for regle in groupe.list %}
+      <div class="col-md-6 col-xl-4">
+        <div class="card h-100 regle-card"
+             style="border-left: 4px solid {% if cat_key == 'makhraj' %}var(--green-senegal){% elif cat_key == 'sifat' %}#0d6efd{% elif cat_key == 'madd' %}#ffc107{% elif cat_key == 'idgham' %}#0dcaf0{% elif cat_key == 'ikhfa' %}#6c757d{% elif cat_key == 'iqlab' %}#dc3545{% else %}#212529{% endif %};">
+          <div class="card-body p-4">
+
+            <!-- Titre + niveau -->
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <h6 class="fw-bold mb-0 lh-sm" style="max-width: 75%;">{{ regle.nom }}</h6>
+              {% if regle.niveau_scolaire %}
+              <span class="badge
+                {% if cat_key == 'makhraj' %}bg-success
+                {% elif cat_key == 'sifat' %}bg-primary
+                {% elif cat_key == 'madd' %}bg-warning text-dark
+                {% elif cat_key == 'idgham' %}bg-info text-dark
+                {% elif cat_key == 'ikhfa' %}bg-secondary
+                {% elif cat_key == 'iqlab' %}bg-danger
+                {% else %}bg-dark
+                {% endif %} badge-niveau ms-1 flex-shrink-0">
+                {{ regle.niveau_scolaire }}
+              </span>
+              {% endif %}
+            </div>
+
+            <!-- Exemple arabe -->
+            {% if regle.exemple_arabe %}
+            <div class="arabic-text-sm mb-3 p-2 rounded text-center"
+                 style="background: #f8fffe; color: var(--dark-green); font-size: 1.3rem; line-height: 2;">
+              {{ regle.exemple_arabe }}
+            </div>
             {% endif %}
+
+            <!-- Description -->
+            <p class="text-secondary small mb-0" style="line-height: 1.6;">{{ regle.description_fr }}</p>
           </div>
-          {% if regle.exemple_arabe %}
-          <p class="arabic-text-sm text-success mb-2">{{ regle.exemple_arabe }}</p>
-          {% endif %}
-          <p class="text-secondary small mb-0">{{ regle.description_fr }}</p>
         </div>
       </div>
       {% endfor %}
     </div>
   </div>
-</div>
-{% empty %}
+
+  {% endwith %}
+  {% endwith %}
+  {% endfor %}
+
+{% else %}
 <div class="text-center py-5">
-  <i class="bi bi-music-note text-muted fs-1"></i>
-  <p class="text-muted mt-3">Les règles de Tajweed n'ont pas encore été saisies.</p>
-  {% if user.is_staff %}
-  <a href="/admin/quran/tajweed/add/" class="btn btn-outline-success">
-    <i class="bi bi-plus-circle me-1"></i>Ajouter une règle
-  </a>
+  <i class="bi bi-search text-muted" style="font-size: 3rem;"></i>
+  <p class="text-muted mt-3 mb-1 fs-5">Aucune règle trouvée.</p>
+  {% if query or categorie_filtre %}
+  <p class="text-muted small">Essayez une autre recherche ou <a href="{% url 'tajweed_list' %}">réinitialisez les filtres</a>.</p>
   {% endif %}
 </div>
-{% endfor %}
+{% endif %}
+
+<style>
+.regle-card { transition: transform 0.15s, box-shadow 0.15s; }
+.regle-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+.bg-success-subtle { background-color: #d1e7dd; }
+.bg-primary-subtle { background-color: #cfe2ff; }
+.bg-warning-subtle { background-color: #fff3cd; }
+.bg-info-subtle    { background-color: #cff4fc; }
+.bg-secondary-subtle { background-color: #e2e3e5; }
+.bg-danger-subtle  { background-color: #f8d7da; }
+.bg-dark-subtle    { background-color: #d3d3d4; }
+</style>
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import NiveauScolaire, ProgrammeCoranSenegal, PlanDeLecon, Ressource
+from .models import NiveauScolaire, ProgrammeCoranSenegal, SourateParNiveau, PlanDeLecon, Ressource
 
 
 def liste_niveaux(request):
@@ -13,9 +13,10 @@ def programme_niveau(request, niveau_code):
     niveau = get_object_or_404(NiveauScolaire, code=niveau_code)
     try:
         programme = niveau.programme
-        sourates_s1 = programme.sourateniveau_set.filter(periode='S1').select_related('surah')
-        sourates_s2 = programme.sourateniveau_set.filter(periode='S2').select_related('surah')
-        sourates_annee = programme.sourateniveau_set.filter(periode='annee').select_related('surah')
+        base_qs = SourateParNiveau.objects.filter(programme=programme).select_related('surah').order_by('ordre_enseignement')
+        sourates_s1    = base_qs.filter(periode='S1')
+        sourates_s2    = base_qs.filter(periode='S2')
+        sourates_annee = base_qs.filter(periode='annee')
     except ProgrammeCoranSenegal.DoesNotExist:
         programme = None
         sourates_s1 = sourates_s2 = sourates_annee = []
